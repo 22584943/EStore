@@ -67,5 +67,56 @@
 
         </header>
 
+
+
+
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
+                <form action="/login-form-handler" type="post">
+                    <div class="form-row">
+                        <label for="login-username">Username</label>
+                        <input id="login-username" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="login-password">Password</label>
+                        <input id="login-password" type="password" />
+                    </div>
+                    <div class="form-row">
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="profile" role="register" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="home-tab">
+                    <form action="/register-form-handler" type="post">
+                        <div class="form-row">
+                            <label for="reg-username">Username</label>
+                            <input id="reg-username" type="text" />
+                        </div>
+                        <div class="form-row">
+                            <label for="reg-password">Password</label>
+                            <input id="reg-password" type="password" />
+                        </div>
+                        <div class="form-row">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </body>
 </html>
+
+

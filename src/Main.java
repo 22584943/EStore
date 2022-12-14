@@ -11,6 +11,8 @@ class Main {
         server.createContext("/", new RootHandler() );
         server.createContext("/customers", new CustomerHandler() );
         server.createContext("/products", new ProductHandler() );
+        server.createContext("/login", new LoginHandler() );
+        server.createContext("/register-form-handler", new RegisterFormHandler() );
         server.setExecutor(null);
         server.start();
         System.out.println("The server is listening on port " + PORT);
