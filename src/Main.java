@@ -1,13 +1,13 @@
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
 import java.io.IOException;
+import java.sql.SQLException;
 
 class Main {
     static final private int PORT = 8005;
 
-    public static void main(String[] args) throws IOException {
-        // start command line
-        Controller c = new Controller();
+    public static void main(String[] args) throws IOException, SQLException {
+
 
         // start web server
         HttpServer server = HttpServer.create(new InetSocketAddress(PORT),0);
@@ -22,6 +22,10 @@ class Main {
         server.setExecutor(null);
         server.start();
         System.out.println("The server is listening on port " + PORT);
+
+        // start command line
+        Controller c = new Controller();
+        c.run();
     }
 
 

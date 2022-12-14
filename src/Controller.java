@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 public class Controller {
@@ -8,7 +10,7 @@ public class Controller {
 	private static String inputDescription;
 	private static int inputPrice;
 	private static ArrayList<Product> products = new ArrayList<Product>(Arrays.asList());
-	private static ArrayList<Product> sortedProducts;
+	private static ArrayList<Product> sortedProducts= new ArrayList<>(Arrays.asList());
 	private static ArrayList<String> categories = new ArrayList<String>(Arrays.asList());
 	private static ArrayList<Customer> customers = new ArrayList<Customer>(Arrays.asList());
 	static Random r = new Random();
@@ -16,7 +18,7 @@ public class Controller {
 	static Scanner in = new Scanner(System.in);
 	
 	
-	public static void main(String[] args) {
+	public static void run() throws SQLException {
 			
 			 populateProducts();
 			 populateCustomers();
@@ -306,21 +308,20 @@ public class Controller {
 		 
 		
 	}
-	static public void showProducts() {
-//		// create shallow copy
-//		 sortedProducts = new ArrayList<Product>(Arrays.asList());
-//		 for (Product product : products) {
-//			 sortedProducts.add(product);
-//					 
-//		 }
-//		 System.out.println("There are " + products.size() + " items in the shop");
-//		 System.out.println("-----------------------------");
-//		 if (products.size() > 0) System.out.println("PRODUCTS: ");
-//		 
-//		for (Product product : products) {
-//			System.out.println(product.toString());
-//				 
-//		 }
+	static public void showProducts() throws SQLException {
+		try {
+			ProductDAO productDAO = new ProductDAO();
+			products = productDAO.getProducts();
+			for (Product product : products) {
+				System.out.println(product);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+
+
+
 		
 		
 		
