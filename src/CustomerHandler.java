@@ -15,7 +15,11 @@ public class CustomerHandler implements HttpHandler{
                 new OutputStreamWriter(he.getResponseBody() ));
         CustomerDAO customers = new CustomerDAO();
         ArrayList<Customer> coll = new ArrayList<Customer>();
-
+        UserDAO ud = new UserDAO();
+        // Check if logged in
+        boolean isLoggedIn = ud.isLoggedIn();
+        // Condition button render
+        String showEdit = isLoggedIn ? "<td>Edit</td>" : "";
         try {
             coll = customers.getAllCustomers();
             out.write(
@@ -42,6 +46,7 @@ public class CustomerHandler implements HttpHandler{
                                 "<td>" + c.getAddress() +"</td>" +
                                 "<td>" + c.getEmail() +"</td>" +
                                 "<td>" + c.getTelephone() +"</td>" +
+                                showEdit +
                             "</tr>"
 
                 );

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class UserDAO {
-
+    static boolean loggedIn = false;
     public UserDAO() {}
 
     private static Connection getDBConnection() {
@@ -89,14 +89,24 @@ public class UserDAO {
         return ok;
     }
 
+    // Get user
+
+    public boolean isLoggedIn() {
+
+        return loggedIn;
+    }
+
     // Verify User
 
+    public void logout() {
+        this.loggedIn = false;
+    }
     public static boolean verifyUser(User in) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
         String query = "SELECT * FROM users WHERE username='" +in.getUsername() + "' AND password='" + in.getPassword()+"';";
-        boolean loginSuccessful = false;
+
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
@@ -106,7 +116,7 @@ public class UserDAO {
             result = statement.executeQuery(query); // Execute SQL query and record response to string
             while (result.next()) {
 
-                loginSuccessful = true;
+                loggedIn = true;
             }
 
         } catch (SQLException e) {
@@ -120,7 +130,7 @@ public class UserDAO {
             }
 
         }
-        return loginSuccessful;
+        return loggedIn;
     }
 
 //	public DVD getDVD(int film_id) throws SQLException {

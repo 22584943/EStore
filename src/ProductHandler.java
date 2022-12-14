@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class ProductHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
@@ -15,6 +16,13 @@ public class ProductHandler implements HttpHandler{
         ProductDAO products = new ProductDAO();
         ArrayList<Product> coll;
 
+
+
+        UserDAO ud = new UserDAO();
+        // Check if logged in
+        boolean isLoggedIn = ud.isLoggedIn();
+        // Condition button render
+        String showEdit = isLoggedIn ? "<td>Edit</td>" : "";
         try {
             coll = products.getProducts();
             out.write(
@@ -46,6 +54,7 @@ public class ProductHandler implements HttpHandler{
                                 "<td>" + p.getDescription() +"</td>" +
                                 "<td>" + p.getPrice() +"</td>" +
                                 "<td>" + p.getStock() +"</td>" +
+                                showEdit +
                                 "</tr>"
 
                 );

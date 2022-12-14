@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Map;
 
 public class ProductAddHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
@@ -13,6 +14,7 @@ public class ProductAddHandler implements HttpHandler{
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(he.getResponseBody() ));
         ProductDAO products = new ProductDAO();
+
         ArrayList<Product> coll;
 
         try {

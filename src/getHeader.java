@@ -1,5 +1,11 @@
 public class getHeader {
     static public String get() {
+        UserDAO ud = new UserDAO();
+        // Check if logged in
+        boolean isLoggedIn = ud.isLoggedIn();
+        // Condition button render
+        String showLoginLink = isLoggedIn ? "<a href=\"logout\">Logout</a>" : "<a href=\"login\">Login</a>";
+
         return "<head>" +
                 "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css\"/>" +
                 "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\" crossorigin=\"anonymous\">" +
@@ -54,6 +60,7 @@ public class getHeader {
                 "nav ul {\n" +
                 "   list-style-type: none;\n" +
                 "   padding: 0;\n" +
+                "   margin: 0;\n" +
                 "   font-size: 1.25em;\n" +
                 "\n" +
                 "}\n" +
@@ -107,7 +114,9 @@ public class getHeader {
                 "                <ul>" +
                 "                    <li><a href=\"/products\">Products</a></li>" +
                 "                    <li><a href=\"/customers\">Customers</a></li>" +
-                "                    <li><a href=\"/login\">Login</a></li>" +
+                "                    <li>" +
+                        showLoginLink +
+                "</li>" +
                 "                </ul>" +
                 "            </nav>" +
                 "        </header>";
