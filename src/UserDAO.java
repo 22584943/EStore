@@ -89,6 +89,40 @@ public class UserDAO {
         return ok;
     }
 
+    // Verify User
+
+    public static boolean verifyUser(User in) throws SQLException{
+        Connection dbConnection = null;
+        Statement statement = null;
+        ResultSet result = null;
+        String query = "SELECT * FROM users WHERE username='" +in.getUsername() + "' AND password='" + in.getPassword()+"';";
+        boolean loginSuccessful = false;
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(query);
+            // execute SQL query
+            statement.executeUpdate(query);
+            result = statement.executeQuery(query); // Execute SQL query and record response to string
+            while (result.next()) {
+
+                loginSuccessful = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+
+        }
+        return loginSuccessful;
+    }
+
 //	public DVD getDVD(int film_id) throws SQLException {
 //
 //		DVD temp = null;

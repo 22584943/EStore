@@ -13,6 +13,7 @@ class Main {
         server.createContext("/products", new ProductHandler() );
         server.createContext("/login", new LoginHandler() );
         server.createContext("/register-form-handler", new RegisterFormHandler() );
+        server.createContext("/login-form-handler", new LoginFormHandler() );
         server.setExecutor(null);
         server.start();
         System.out.println("The server is listening on port " + PORT);
