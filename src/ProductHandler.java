@@ -22,7 +22,7 @@ public class ProductHandler implements HttpHandler{
         // Check if logged in
         boolean isLoggedIn = ud.isLoggedIn();
         // Condition button render
-        String showEdit = isLoggedIn ? "<td>Edit</td>" : "";
+
         try {
             coll = products.getProducts();
             out.write(
@@ -45,6 +45,7 @@ public class ProductHandler implements HttpHandler{
 
             );
             for (Product p: coll) {
+                String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?SKU=" + p.getSKU() +"\">Edit</a></td>" : "";
                 out.write(
                         "<tr>" +
                                 "<td>" + p.getID() +"</td>" +
