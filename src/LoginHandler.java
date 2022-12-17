@@ -31,7 +31,7 @@ public class LoginHandler implements HttpHandler{
                         "        </ul>\n" +
                         "        <div class=\"tab-content\" id=\"myTabContent\">\n" +
                         "            <div class=\"tab-pane fade show active\" id=\"login\" role=\"tabpanel\" aria-labelledby=\"login-tab\">\n" +
-                        "                <form action=\"/login-form-handler\" type=\"get\">\n" +
+                        "                <form action=\"/login-form-handler\" method=\"post\">\n" +
                         "                    <div class=\"form-row\">\n" +
                         "                        <label for=\"login-username\">Username</label>\n" +
                         "                        <input id=\"login-username\" name=\"username\" type=\"text\" />\n" +
@@ -46,7 +46,7 @@ public class LoginHandler implements HttpHandler{
                         "                </form>\n" +
                         "            </div>\n" +
                         "            <div class=\"tab-pane fade\" id=\"register\" role=\"register\" aria-labelledby=\"register-tab\">\n" +
-                        "                    <form action=\"/register-form-handler\" type=\"get\">\n" +
+                        "                    <form action=\"/register-form-handler\" method=\"post\">\n" +
                         "                        <div class=\"form-row\">\n" +
                         "                            <label for=\"reg-username\">Username</label>\n" +
                         "                            <input id=\"reg-username\" name=\"username\"type=\"text\" />\n" +
