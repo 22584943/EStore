@@ -4,7 +4,7 @@ public class getHeader {
         // Check if logged in
         boolean isLoggedIn = ud.isLoggedIn();
         // Condition button render
-        String showLoginLink = isLoggedIn ? "<a href=\"logout\">Logout</a>" : "<a href=\"login\">Login</a>";
+        String showLoginLink = isLoggedIn ? "<a href=\"\\logout\">Logout</a>" : "<a href=\"\\login\">Login</a>";
 
         return "<head>" +
                 "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css\"/>" +
