@@ -1,12 +1,10 @@
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
+
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.util.ArrayList;
 import java.sql.SQLException;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.util.Map;
 
 public class RegisterFormHandler implements HttpHandler{
@@ -17,21 +15,36 @@ public class RegisterFormHandler implements HttpHandler{
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(he.getResponseBody() ));
 
-        // Get param from URL
-        Map <String,String> params = Util.requestStringToMap(he.getRequestURI().getQuery());
 
-        // print the params for debugging
-        System.out.println(params);
+        // Get POST data
+        // See https://stackoverflow.com/questions/10393879/how-to-get-an-http-post-request-body-as-a-java-string-at-the-server-side
+        InputStreamReader isr =  new InputStreamReader(he.getRequestBody(),"utf-8");
+        BufferedReader br = new BufferedReader(isr);
 
-        //get ID number
+// From now on, the right way of moving from bytes to utf-8 characters:
+
+        int b;
+        StringBuilder buf = new StringBuilder(512);
+        while ((b = br.read()) != -1) {
+            buf.append((char) b);
+        }
+        // map POST data to key/values using Util.requestStringToMap
+        Map <String,String> postData = Util.requestStringToMap(buf.toString());
+        br.close();
+        isr.close();
+
+// The resulting string is: buf.toString()
+// and the number of BYTES (not utf-8 characters) from the body is: buf.length()
+
+
 
 
         UserDAO users = new UserDAO();
 
         System.out.println("about to get data");
 
-        String username = params.get("username");
-        String password = params.get("password");
+        String username = postData.get("username");
+        String password = postData.get("password");
 
 
         System.out.println("about to create user"); // Debugging message
