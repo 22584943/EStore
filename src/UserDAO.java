@@ -101,11 +101,45 @@ public class UserDAO {
     public void logout() {
         this.loggedIn = false;
     }
-    public static boolean verifyUser(String username) throws SQLException{
+
+    public static String getStoredPassword(String username) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM users WHERE username='" + username +"';";
+        String storedPassword ="";
+        String query = "SELECT password FROM users WHERE username='" +username + "';";
+
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(query);
+            // execute SQL query
+            statement.executeUpdate(query);
+            result = statement.executeQuery(query); // Execute SQL query and record response to string
+            while (result.next()) {
+
+                storedPassword = result.getString("password");
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+
+        }
+        return storedPassword;
+    }
+    public static boolean verifyUserExists(String username) throws SQLException{
+        Connection dbConnection = null;
+        Statement statement = null;
+        ResultSet result = null;
+        String query = "SELECT * FROM users WHERE username='" +username + "';";
 
         try {
             dbConnection = getDBConnection();

@@ -42,25 +42,22 @@ public class LoginFormHandler implements HttpHandler{
 
         UserDAO users = new UserDAO();
 
-        System.out.println("about to get data");
 
         String username = postData.get("username");
         String password = postData.get("password");
 
-
-
-
-
-        System.out.println("about to create user"); // Debugging message
-
-        boolean passwordMatch;
+        // Get stored hashed password
+        String storedPassword = null;
         try {
-            passwordMatch = verifyPassword.verify(password);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
+            storedPassword = UserDAO.getStoredPassword(username);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    System.out.println("sp: "+storedPassword);
+        // VERIFY PASSWORD
+        boolean passwordMatch;
+        passwordMatch = Password.checkPassword(password, storedPassword);
 
 
         if (passwordMatch==true) {
@@ -68,7 +65,7 @@ public class LoginFormHandler implements HttpHandler{
 
             try {
                 // verify user
-                boolean loginSuccessful = UserDAO.verifyUser(username); // add to database
+                boolean loginSuccessful = UserDAO.verifyUserExists(username); // add to database
                 String outputMessage = loginSuccessful ? "Welcome, " + username : "Error: Incorrect username or password";
                 String showLinks = loginSuccessful ? "<a href=\"products\">View products</a><a href=\"customers\">View customers</a>" : "";
                 out.write(
@@ -86,6 +83,18 @@ public class LoginFormHandler implements HttpHandler{
             } catch (SQLException se) {
                 System.out.println(se.getMessage());
             }
+        } else {
+            out.write(
+                    "<html>" +
+                            getHeader.get() +
+                            "<body>" +
+                            "<div class=\"flex-center flex-down\">" +
+                            "<h1>" + "Access denied: Incorrect password " + "</h1>" +
+
+                            "</div>" +
+                            "</body>" +
+                            "</html>"
+            );
         }
         out.close();
 

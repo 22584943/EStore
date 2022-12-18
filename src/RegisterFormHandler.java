@@ -53,13 +53,7 @@ public class RegisterFormHandler implements HttpHandler{
 
         // Create password hash
         String hash;
-        try {
-            hash = PasswordHasher.hash(password);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
+        hash = Password.hashPassword(password);
         User user = new User(username, hash);
         System.out.println("user to Add" + user);
 
