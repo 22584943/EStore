@@ -3,6 +3,8 @@ import java.io.*;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Map;
@@ -48,8 +50,19 @@ public class RegisterFormHandler implements HttpHandler{
 
 
         System.out.println("about to create user"); // Debugging message
-        User user = new User(username, password);
+
+        // Create password hash
+        String hash;
+        try {
+            hash = PasswordHasher.hash(password);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
+        User user = new User(username, hash);
         System.out.println("user to Add" + user);
+
 
         try {
             // attempt to add user to db, get response message

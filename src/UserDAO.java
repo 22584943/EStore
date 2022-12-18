@@ -101,11 +101,11 @@ public class UserDAO {
     public void logout() {
         this.loggedIn = false;
     }
-    public static boolean verifyUser(User in) throws SQLException{
+    public static boolean verifyUser(String username) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM users WHERE username='" +in.getUsername() + "' AND password='" + in.getPassword()+"';";
+        String query = "SELECT * FROM users WHERE username='" + username +"';";
 
         try {
             dbConnection = getDBConnection();

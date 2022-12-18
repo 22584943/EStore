@@ -3,6 +3,8 @@ import java.io.*;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Map;
@@ -50,30 +52,41 @@ public class LoginFormHandler implements HttpHandler{
 
 
         System.out.println("about to create user"); // Debugging message
-        User user = new User(username, password);
-        System.out.println("user to Add" + user);
 
+        boolean passwordMatch;
         try {
-            // verify user
-            boolean loginSuccessful = UserDAO.verifyUser(user); // add to database
-            String outputMessage = loginSuccessful ?  "Welcome "+ username : "Error: Incorrect username or password";
-            String showLinks = loginSuccessful ? "<a href=\"products\">View products</a><a href=\"customers\">View customers</a>" : "";
-            out.write(
-                    "<html>" +
-                            getHeader.get() +
-                            "<body>" +
-                            "<div class=\"flex-center flex-down\">" +
-                            "<h1>" + outputMessage + "</h1>" +
-                            showLinks +
-
-                            "</div>" +
-                            "</body>" +
-                            "</html>"
-            );
-        }catch(SQLException se){
-            System.out.println(se.getMessage());
+            passwordMatch = verifyPassword.verify(password);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e);
         }
 
+
+        if (passwordMatch==true) {
+
+
+            try {
+                // verify user
+                boolean loginSuccessful = UserDAO.verifyUser(username); // add to database
+                String outputMessage = loginSuccessful ? "Welcome, " + username : "Error: Incorrect username or password";
+                String showLinks = loginSuccessful ? "<a href=\"products\">View products</a><a href=\"customers\">View customers</a>" : "";
+                out.write(
+                        "<html>" +
+                                getHeader.get() +
+                                "<body>" +
+                                "<div class=\"flex-center flex-down\">" +
+                                "<h1>" + outputMessage + "</h1>" +
+                                showLinks +
+
+                                "</div>" +
+                                "</body>" +
+                                "</html>"
+                );
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+        }
         out.close();
 
     }
