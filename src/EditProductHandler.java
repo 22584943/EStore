@@ -14,7 +14,7 @@ public class EditProductHandler implements HttpHandler{
         BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(he.getResponseBody() ));
         ProductDAO products = new ProductDAO();
-        ArrayList<Product> coll;
+
 
 
 
@@ -29,31 +29,60 @@ public class EditProductHandler implements HttpHandler{
         System.out.println(params);
         // Get SKU param
         String paramSKU = params.get("SKU");
+        int id = Integer.parseInt(params.get("id"));
+        System.out.println(id);
+        String category = params.get("category");
+
+
         // Authorised Access
         if (isLoggedIn) {
             try {
-                coll = products.getProducts();
+                Product product = products.getProductByID(id);
                 out.write(
                         getHeader.get() +
                                 "<h1>Edit Product:" + paramSKU +"</h1>"
 
+
                 );
-                for (Product p: coll) {
-                    String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?SKU=" + p.getSKU() +"\">Edit</a></td>" : "";
+
+                    String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?SKU=" + product.getSKU() +"\">Edit</a></td>" : "";
                     out.write(
-                            "<tr>" +
-                                    "<td>" + p.getID() +"</td>" +
-                                    "<td>" + p.getSKU() +"</td>" +
-                                    "<td>" + p.getCategory() +"</td>" +
-                                    "<td>" + p.getName() +"</td>" +
-                                    "<td>" + p.getDescription() +"</td>" +
-                                    "<td>" + p.getPrice() +"</td>" +
-                                    "<td>" + p.getStock() +"</td>" +
-                                    showEdit +
-                                    "</tr>"
+                            "<form class=\"edit-product-form\" action=\"edit-product-handler\" method=\"post\">" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>ID</label>"  +
+                                    "<input name=\"id\" type=\"hidden\" value=\"" + product.getID()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>SKU</div>" +
+                                        "<input name=\"SKU\" type=\"text\" value=\""+ product.getSKU()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>Category</label>" +
+                                        "<input name=\"category\"type=\"text\" value=\""+ product.getCategory()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>Product Name</label>" +
+                                        "<input name=\"name\" type=\"text\" value=\""+ product.getName()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>Description</label>" +
+                                        "<input name=\"description\" type=\"text\" value=\""+ product.getDescription()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>Price</label>" +
+                                        "<input name=\"price\"type=\"number\" value=\""+ product.getPrice()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                        "<label>Stock</label>" +
+                                        "<input name=\"stock\" type=\"number\" value=\""+ product.getStock()  +"\" />" +
+                                    "</div>" +
+                                    "<div class=\"form-row\">" +
+                                    "<button type=\"submit\">Update</button>" +
+                                    "</div>" +
+                                    "</form>"
 
                     );
-                }
+
                 out.write(
 
 
@@ -69,18 +98,14 @@ public class EditProductHandler implements HttpHandler{
             }
         // Unauthorised access
         } else {
-            try {
-                coll = products.getProducts();
-                out.write(
-                        getHeader.get() +
-                                "<h1>Access Denied</h1>" +
-                                "</body>" +
-                                "</html>"
-                );
-                out.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+
+            out.write(
+                    getHeader.get() +
+                            "<h1>Access Denied</h1>" +
+                            "</body>" +
+                            "</html>"
+            );
+            out.close();
         }
 
 
