@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.Map;
 
 public class ProductHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
@@ -45,7 +44,7 @@ public class ProductHandler implements HttpHandler{
 
             );
             for (Product p: coll) {
-                String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?SKU=" + p.getSKU() +"\">Edit</a></td>" : "";
+                String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
                 out.write(
                         "<tr>" +
                                 "<td>" + p.getID() +"</td>" +
