@@ -102,6 +102,12 @@ public class getHeader {
                 "    flex-direction: column;\n" +
                 "    align-items: flex-start;\n" +
                 "}"+
+                ".edit-product-form {\n" +
+                "    width: 70%;\n" +
+                "    margin: auto;\n" +
+                "    display: flex;\n" +
+                "    flex-direction: column;\n" +
+                "}" +
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
