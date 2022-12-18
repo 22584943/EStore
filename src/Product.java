@@ -75,11 +75,11 @@ public class Product {
 		this.price = newPrice;
 	}
 	
-	public void incrementStock(int newStock ) {
-		this.stock += newStock;
+	public void setStock(int newStock ) {
+		this.stock = newStock;
 	}
 	// toString
-	
+
 	public String toString() {
 		return "SKU: " + SKU + ", CATEGORY: " + category + " , NAME: " + name + ", DESCRIPTION: " + description + ", PRICE: " + price;
 	}
