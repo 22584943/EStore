@@ -23,6 +23,7 @@ public class ProductHandler implements HttpHandler{
         // Condition button render
 
         try {
+            String showAdd = isLoggedIn ? "<div><a href=\"/products/add\"><span>Add Product</span></a></div>" : "";
             coll = products.getProducts();
             out.write(
                     getHeader.get() +
@@ -46,6 +47,7 @@ public class ProductHandler implements HttpHandler{
             for (Product p: coll) {
                 String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
                 String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
+
                 out.write(
                         "<tr>" +
                                 "<td>" + p.getID() +"</td>" +
@@ -67,6 +69,7 @@ public class ProductHandler implements HttpHandler{
                     "</tbody>" +
                             "</table>" +
                             "</div>" +
+                            showAdd +
                             "</body>" +
                             "</html>"
             );
