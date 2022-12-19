@@ -20,6 +20,17 @@ public class Product {
 		this.stock = stock;
 	}
 
+	//override for creating product instance before it exists in db where it gets given id
+	public Product(String SKU, String category, String name, String description, int price, int stock) {
+
+		this.SKU = SKU;
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+	}
+
 
 
 	// Getters
