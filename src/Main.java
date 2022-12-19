@@ -16,6 +16,8 @@ class Main {
         server.createContext("/customers/edit", new EditCustomerHandler());
         server.createContext("/customers/edit-customer-handler", new EditCustomerFormHandler() );
         server.createContext("/products", new ProductHandler() );
+        server.createContext("/products/delete", new DeleteProductHandler() );
+        server.createContext("/products/delete-product-handler", new DeleteProductFormHandler() );
         server.createContext("/products/edit", new EditProductHandler() );
         server.createContext("/products/edit-product-handler", new EditProductFormHandler() );
         server.createContext("/login", new LoginHandler() );
