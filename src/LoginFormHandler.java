@@ -55,12 +55,12 @@ public class LoginFormHandler implements HttpHandler{
         }
 
     System.out.println("sp: "+storedPassword);
-        // VERIFY PASSWORD
+        // AUTHENTICATION - verify password
         boolean passwordMatch;
         passwordMatch = Password.checkPassword(password, storedPassword);
 
 
-        if (passwordMatch==true) {
+        if (passwordMatch) {
 
 
             try {
