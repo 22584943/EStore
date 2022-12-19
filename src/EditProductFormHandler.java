@@ -52,7 +52,7 @@ public class EditProductFormHandler implements HttpHandler{
         try {
             // verify user
             boolean updateProductSuccess = productDAO.updateProduct(updatedProduct); // add to database
-            String outputMessage = updateProductSuccess ? "Updated" : "Error: Incorrect username or password";
+            String outputMessage = updateProductSuccess ? "Updated" : "Error: Please try again";
 
             out.write(
                     "<html>" +
