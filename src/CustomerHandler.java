@@ -40,6 +40,7 @@ public class CustomerHandler implements HttpHandler{
             for (Customer c: coll) {
                 // Condition button render
                 String showEdit = isLoggedIn ? "<td><a href=\"/customers/edit?id=" + c.getID() + "\">Edit</a></td>" : "";
+                String showDelete = isLoggedIn ? "<td><a href=\"/customers/delete?id=" + c.getID() +"\">Delete</a></td>" : "";
                 out.write(
                         "<tr>" +
                                 "<td>" + c.getID() +"</td>" +
@@ -48,6 +49,7 @@ public class CustomerHandler implements HttpHandler{
                                 "<td>" + c.getEmail() +"</td>" +
                                 "<td>" + c.getTelephone() +"</td>" +
                                 showEdit +
+                                showDelete +
                             "</tr>"
 
                 );
