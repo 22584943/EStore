@@ -166,30 +166,30 @@ public class CustomerDAO {
 		}
 	}
 
-//	public boolean addDVD(DVD in) throws SQLException{
-//		Connection dbConnection = null;
-//		Statement statement = null;
-//		
-//		String update = "INSERT INTO collection (ID, Title, Genre, Year, rating) VALUES ("+in.getID()+",'"+ in.getTitle()+"','"+in.getGenre()+"',"+in.getYear()+","+in.getRating() + ");";
-//		boolean ok = false;
-//			try {
-//					dbConnection = getDBConnection();
-//					statement = dbConnection.createStatement();
-//					System.out.println(update);
-//		// execute SQL query
-//					statement.executeUpdate(update);
-//					ok = true;
-//				} catch (SQLException e) {
-//					System.out.println(e.getMessage());
-//				} finally {
-//					if (statement != null) {
-//						statement.close();
-//					}
-//					if (dbConnection != null) {
-//						dbConnection.close();
-//					}
-//					
-//				}
-//			return ok;
-//	}
+	public boolean addCustomer(Customer c) throws SQLException{
+		Connection dbConnection = null;
+		Statement statement = null;
+
+		String update = "INSERT INTO customers (name, address, email, telephone) VALUES ('"+ c.getName()+"','"+c.getAddress()+"','"+c.getEmail()+"','"+c.getTelephone() + "');";
+		boolean ok = false;
+			try {
+					dbConnection = getDBConnection();
+					statement = dbConnection.createStatement();
+					System.out.println(update);
+		// execute SQL query
+					statement.executeUpdate(update);
+					ok = true;
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				} finally {
+					if (statement != null) {
+						statement.close();
+					}
+					if (dbConnection != null) {
+						dbConnection.close();
+					}
+
+				}
+			return ok;
+	}
 	}
