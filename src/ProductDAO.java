@@ -110,33 +110,33 @@ public class ProductDAO {
 		return temp;
 	}
 
-//	public Boolean deleteDVD(int film_id) throws SQLException {
-//		System.out.println("Deleting dvd");
-//		Connection dbConnection = null;
-//		Statement statement = null;
-//		int result = 0;
-//		String query = "DELETE FROM collection WHERE ID = " + film_id + ";";
-//		try {
-//			dbConnection = getDBConnection();
-//			statement = dbConnection.createStatement();
-//		//	System.out.println(query);
-//			// execute SQL query
-//			result = statement.executeUpdate(query);
-//		} finally {
-//			if (statement != null) {
-//				statement.close();
-//			}
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//			}
-//		}
-//		if (result == 1) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-//
+	public Boolean deleteProduct(int productID) throws SQLException {
+		System.out.println("Deleting product");
+		Connection dbConnection = null;
+		Statement statement = null;
+		int result = 0;
+		String query = "DELETE FROM products WHERE ID = " + productID + ";";
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+		//	System.out.println(query);
+			// execute SQL query
+			result = statement.executeUpdate(query);
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		if (result == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public Boolean updateProduct(Product product) throws SQLException {
 		Connection dbConnection = null;
 		Statement statement = null;
