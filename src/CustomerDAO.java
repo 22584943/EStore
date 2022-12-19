@@ -139,65 +139,33 @@ public class CustomerDAO {
 		}
 		return true;
 	}
-//	public Boolean deleteDVD(int film_id) throws SQLException {
-//		System.out.println("Deleting dvd");
-//		Connection dbConnection = null;
-//		Statement statement = null;
-//		int result = 0;
-//		String query = "DELETE FROM collection WHERE ID = " + film_id + ";";
-//		try {
-//			dbConnection = getDBConnection();
-//			statement = dbConnection.createStatement();
-//		//	System.out.println(query);
-//			// execute SQL query
-//			result = statement.executeUpdate(query);
-//		} finally {
-//			if (statement != null) {
-//				statement.close();
-//			}
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//			}
-//		}
-//		if (result == 1) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-//
-//	public Boolean updateDVD(DVD dvd) throws SQLException {
-//		Connection dbConnection = null;
-//		Statement statement = null;
-//
-//		String query = "UPDATE collection " + "SET ID = '" + dvd.getID() + "'," + "Title = '"
-//				+ dvd.getTitle() + "'," + "Genre= '" + dvd.getGenre() + "'," + "Year= " + dvd.getYear() + ", Rating=" + dvd.getRating() + " WHERE ID = " + dvd.getID()
-//				+ ";";
-//
-//		try {
-//			dbConnection = getDBConnection();
-//			statement = dbConnection.createStatement();
-//			//System.out.println(query);
-//			// execute SQL update
-//			statement.executeUpdate(query);
-//
-//		} catch (SQLException e) {
-//
-//			System.out.println(e.getMessage());
-//			return false;
-//
-//		} finally {
-//
-//			if (statement != null) {
-//				statement.close();
-//			}
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//			}
-//		}
-//		return true;
-//	}
-//
+	public Boolean deleteCustomer(int customerID) throws SQLException {
+		System.out.println("Deleting dvd");
+		Connection dbConnection = null;
+		Statement statement = null;
+		int result = 0;
+		String query = "DELETE FROM customers WHERE ID = " + customerID + ";";
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+		//	System.out.println(query);
+			// execute SQL query
+			result = statement.executeUpdate(query);
+		} finally {
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		if (result == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 //	public boolean addDVD(DVD in) throws SQLException{
 //		Connection dbConnection = null;
 //		Statement statement = null;
