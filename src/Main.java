@@ -13,6 +13,8 @@ class Main {
         HttpServer server = HttpServer.create(new InetSocketAddress(PORT),0);
         server.createContext("/", new RootHandler() );
         server.createContext("/customers", new CustomerHandler() );
+        server.createContext("/customers/edit", new EditCustomerHandler());
+        server.createContext("/customers/edit-customer-handler", new EditCustomerFormHandler() );
         server.createContext("/products", new ProductHandler() );
         server.createContext("/products/edit", new EditProductHandler() );
         server.createContext("/products/edit-product-handler", new EditProductFormHandler() );
@@ -26,8 +28,8 @@ class Main {
         System.out.println("The server is listening on port " + PORT);
 
         // start command line
-        Controller c = new Controller();
-        c.run();
+//        Controller c = new Controller();
+        Controller.run();
     }
 
 
