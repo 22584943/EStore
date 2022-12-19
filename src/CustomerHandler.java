@@ -37,6 +37,7 @@ public class CustomerHandler implements HttpHandler{
                             "<tbody>"
 
             );
+            String showAdd = isLoggedIn ? "<div><a href=\"/customers/add\"><span>Add Customer</span></a></div>" : "";
             for (Customer c: coll) {
                 // Condition button render
                 String showEdit = isLoggedIn ? "<td><a href=\"/customers/edit?id=" + c.getID() + "\">Edit</a></td>" : "";
@@ -60,6 +61,7 @@ public class CustomerHandler implements HttpHandler{
                     "</tbody>" +
                     "</table>" +
                             "</div>" +
+                            showAdd +
                 "</body>" +
             "</html>"
             );
