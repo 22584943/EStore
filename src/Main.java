@@ -20,6 +20,8 @@ class Main {
         server.createContext("/products", new ProductHandler() );
         server.createContext("/products/delete", new DeleteProductHandler() );
         server.createContext("/products/delete-product-handler", new DeleteProductFormHandler() );
+        server.createContext("/products/add", new AddProductHandler() );
+        server.createContext("/products/add-product-handler", new AddProductFormHandler() );
         server.createContext("/products/edit", new EditProductHandler() );
         server.createContext("/products/edit-product-handler", new EditProductFormHandler() );
         server.createContext("/login", new LoginHandler() );
