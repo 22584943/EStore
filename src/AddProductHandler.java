@@ -36,7 +36,7 @@ public class AddProductHandler implements HttpHandler{
 
 
             out.write(
-                    "<form class=\"edit-product-form\" action=\"add-product-handler\" enctype=\"multipart/form-data\" method=\"post\">" +
+                    "<form class=\"edit-product-form\" action=\"add-product-handler\" method=\"post\">" +
                             "<div class=\"form-row\">" +
                             "<label>SKU</div>" +
                             "<input name=\"SKU\" type=\"text\" />" +
@@ -60,10 +60,6 @@ public class AddProductHandler implements HttpHandler{
                             "<div class=\"form-row\">" +
                             "<label>Stock</label>" +
                             "<input name=\"stock\" type=\"number\"  />" +
-                            "</div>" +
-                            "<div class=\"form-row\">" +
-                            "<label>Add image</div>" +
-                            "<input name=\"image\" type=\"file\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<button type=\"submit\">Add Product</button>" +
