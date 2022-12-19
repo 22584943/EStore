@@ -18,8 +18,7 @@ public class CustomerHandler implements HttpHandler{
         UserDAO ud = new UserDAO();
         // Check if logged in
         boolean isLoggedIn = ud.isLoggedIn();
-        // Condition button render
-        String showEdit = isLoggedIn ? "<td>Edit</td>" : "";
+
         try {
             coll = customers.getAllCustomers();
             out.write(
@@ -39,6 +38,8 @@ public class CustomerHandler implements HttpHandler{
 
             );
             for (Customer c: coll) {
+                // Condition button render
+                String showEdit = isLoggedIn ? "<td><a href=\"/customers/edit?id=" + c.getID() + "\">Edit</a></td>" : "";
                 out.write(
                         "<tr>" +
                                 "<td>" + c.getID() +"</td>" +
