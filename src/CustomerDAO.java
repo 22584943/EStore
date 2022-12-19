@@ -65,48 +65,80 @@ public class CustomerDAO {
 		return customers;
 	}
 
-//	public DVD getDVD(int film_id) throws SQLException {
-//
-//		DVD temp = null;
-//		Connection dbConnection = null;
-//		Statement statement = null;
-//		ResultSet result = null;
-//
-//		String query = "SELECT * FROM collection WHERE ID =" + film_id + ";";
-//
-//		try {
-//			dbConnection = getDBConnection();
-//			statement = dbConnection.createStatement();
-//		//	System.out.println("DBQuery: " + query);
-//			// execute SQL query
-//			result = statement.executeQuery(query);
-//
-//			while (result.next()) {
-//
-//
-//				int id = result.getInt("ID");
-//				String title = result.getString("Title");
-//				String genre = result.getString("Genre");
-//				int year = result.getInt("Year");
-//        int rating = result.getInt("Rating");
-//				
-//				temp = new DVD(id,title,genre,year,rating);
-//
-//			}
-//		} finally {
-//			if (result != null) {
-//				result.close();
-//			}
-//			if (statement != null) {
-//				statement.close();
-//			}
-//			if (dbConnection != null) {
-//				dbConnection.close();
-//			}
-//		}
-//		return temp;
-//	}
-//
+	public Customer getCustomerByID(int customerID) throws SQLException {
+
+		Customer temp = null;
+		Connection dbConnection = null;
+		Statement statement = null;
+		ResultSet result = null;
+
+		String query = "SELECT * FROM customers WHERE ID =" + customerID + ";";
+
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			//	System.out.println("DBQuery: " + query);
+			// execute SQL query
+			result = statement.executeQuery(query);
+
+			while (result.next()) {
+
+
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				String address = result.getString("address");
+				String email = result.getString("email");
+
+				String telephone = result.getString("telephone");
+
+				temp = new Customer(id,name, address, email, telephone);
+
+			}
+		} finally {
+			if (result != null) {
+				result.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return temp;
+	}
+
+	public Boolean updateCustomer(Customer customer) throws SQLException {
+		Connection dbConnection = null;
+		Statement statement = null;
+
+		String query = "UPDATE customers " + "SET name='" + customer.getName() + "'," + "address='"
+				+ customer.getAddress() + "'," + "email='" + customer.getEmail() + "'," +  "telephone='" + customer.getTelephone() +  "' WHERE ID=" + customer.getID()
+				+ ";";
+		System.out.println(query);
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			//System.out.println(query);
+			// execute SQL update
+			statement.executeUpdate(query);
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+			return false;
+
+		} finally {
+
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return true;
+	}
 //	public Boolean deleteDVD(int film_id) throws SQLException {
 //		System.out.println("Deleting dvd");
 //		Connection dbConnection = null;
