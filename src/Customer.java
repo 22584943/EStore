@@ -38,6 +38,14 @@ public class Customer {
 	//		Customer.customers = customers;
 		}
 
+	public Customer(String name, String address, String email, String telephone ) {
+
+		this.name = name;
+		this.address = address;
+		this.email = email;
+		this.telephone = telephone;
+		//		Customer.customers = customers;
+	}
 	public Customer(int id, String name, String address, String email, String telephone) {
 
 		this.id = id;
