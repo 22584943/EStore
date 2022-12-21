@@ -66,6 +66,45 @@ public class ProductDAO {
 		return products;
 	}
 
+	public ArrayList<Product> searchProducts(String searchType, String searchQuery) throws SQLException {
+		System.out.println("Retrieving queried products ...");
+		Connection dbConnection = null;
+		Statement statement = null;
+		ResultSet result = null;
+		String query = "SELECT * FROM products WHERE instr(" + searchType + ", '" + searchQuery + "') > 0;";
+		ArrayList<Product> products = new ArrayList<>();
+
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			//System.out.println("DBQuery = " + query);
+			result = statement.executeQuery(query); // Execute SQL query and record response to string
+			while (result.next()) {
+				int id = result.getInt("id");
+				String SKU = result.getString("SKU");
+				String category = result.getString("category");
+				String name = result.getString("name");
+				String description = result.getString("description");
+				int price = result.getInt("price");
+				int stock = result.getInt("stock");
+				products.add(new Product(id, SKU, category, name, description, price, stock));
+			}
+		} catch(Exception e) {
+			System.out.println("get all dvds: "+e);
+		} finally {
+			if (result != null) {
+				result.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return products;
+	}
+
 	public Product getProductByID(int productID) throws SQLException {
 
 		Product temp = null;
@@ -109,6 +148,8 @@ public class ProductDAO {
 		}
 		return temp;
 	}
+
+
 
 	public Boolean deleteProduct(int productID) throws SQLException {
 		System.out.println("Deleting product");
