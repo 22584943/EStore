@@ -1,14 +1,13 @@
 Authorisation - only logged in users can access product edit pages
 Secure sending of form data using post rather than get - used utility to grab postData
 Authentication and password hashing using BCrypt
-
+partial search matching products
 
 
 
 TODO:
 
-add product handler
-add customer handler
+
 Add images
 prettify with icons
 refactor code!
