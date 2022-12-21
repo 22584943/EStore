@@ -28,6 +28,16 @@ public class ProductHandler implements HttpHandler{
             out.write(
                     getHeader.get() +
                             "<h1>Here be products...</h1>" +
+                            "<form class=\"search-form\" action=\"products\\product-search\" method=\"get\">\n" +
+                            "            <select name=\"searchType\">\n" +
+                            "                <option value=\"id\">id</option>\n" +
+                            "                <option value=\"SKU\">SKU</option>\n" +
+                            "                <option value=\"name\">name</option>\n" +
+                            "                <option value=\"description\">description</option>\n" +
+                            "            </select>\n" +
+                            "            <input name=\"query\" type=\"text\" />\n" +
+                            "           <button type=\"submit\">Search</button>" +
+                            "        </form>" +
                             "<div class=\"table-cont\">" +
                                 "<table class=\"table table-dark table-striped\">" +
                                 "<thead>" +
