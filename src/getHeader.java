@@ -91,7 +91,7 @@ public class getHeader {
                 "    text-transform: uppercase;\n" +
                 "    border: none;"+
                 "}" +
-                "form input, button[type=\"submit\"] {\n" +
+                ".form-wrapper input, .form-wrapper button[type=\"submit\"] {\n" +
                 "   width: 100%;" +
                 "    padding: 0.5em;\n" +
                 "    margin-bottom: 1em;\n" +
@@ -108,6 +108,15 @@ public class getHeader {
                 "    display: flex;\n" +
                 "    flex-direction: column;\n" +
                 "}" +
+                ".search-form {\n" +
+                "min-width: 300px;\n" +
+                "width: 50%;\n" +
+                "display: flex;\n" +
+                "flex-direction: row;" +
+                "margin: auto;}" +
+                ".search-form > * {\n" +
+                "height: 2em;" +
+                "margin: 0;}"+
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
