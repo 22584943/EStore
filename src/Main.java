@@ -26,6 +26,7 @@ class Main {
         server.createContext("/products/add-product-handler", new AddProductFormHandler() );
         server.createContext("/products/edit", new EditProductHandler() );
         server.createContext("/products/edit-product-handler", new EditProductFormHandler() );
+        server.createContext("/products/product-search", new ProductSearchResultsHandler() );
         server.createContext("/login", new LoginHandler() );
         server.createContext("/logout", new LogoutHandler() );
         server.createContext("/register-form-handler", new RegisterFormHandler() );
