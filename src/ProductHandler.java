@@ -25,6 +25,7 @@ public class ProductHandler implements HttpHandler{
         try {
             String showAdd = isLoggedIn ? "<div><a href=\"/products/add\"><span>Add Product</span></a></div>" : "";
             coll = products.getProducts();
+            ArrayList<String> categories = products.getCategories();
             out.write(
                     getHeader.get() +
                             "<h1>Here be products...</h1>" +
@@ -33,11 +34,25 @@ public class ProductHandler implements HttpHandler{
                             "                <option value=\"id\">id</option>\n" +
                             "                <option value=\"SKU\">SKU</option>\n" +
                             "                <option value=\"name\">name</option>\n" +
+                            "                <option value=\"category\">category</option>" +
                             "                <option value=\"description\">description</option>\n" +
                             "            </select>\n" +
                             "            <input name=\"query\" type=\"text\" />\n" +
                             "           <button type=\"submit\">Search</button>" +
-                            "        </form>" +
+                            "        </form>"
+            );
+            for (String category: categories) {
+
+
+                out.write(
+
+                        "<div><a href=\"products/product-search?searchType=category&query=" + category +"\">"+ category +"</a></div>"
+
+
+                );
+            }
+
+            out.write(
                             "<div class=\"table-cont\">" +
                                 "<table class=\"table table-dark table-striped\">" +
                                 "<thead>" +
@@ -54,6 +69,9 @@ public class ProductHandler implements HttpHandler{
                                 "<tbody>"
 
             );
+
+
+
             for (Product p: coll) {
                 String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
                 String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
