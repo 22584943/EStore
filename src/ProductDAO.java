@@ -149,7 +149,43 @@ public class ProductDAO {
 		return temp;
 	}
 
+	public ArrayList<String> getCategories() throws SQLException {
+		System.out.println("Retrieving all categories ...");
+		Connection dbConnection = null;
+		Statement statement = null;
+		ResultSet result = null;
+		String query = "SELECT category FROM products;";
+		ArrayList<String> categories = new ArrayList<>();
 
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			//System.out.println("DBQuery = " + query);
+			result = statement.executeQuery(query); // Execute SQL query and record response to string
+			while (result.next()) {
+				String category = result.getString("category");
+				// check not adding duplicate categories
+				if (!categories.contains(category)) {
+					categories.add(category);
+				}
+				System.out.println(categories);
+
+			}
+		} catch(Exception e) {
+			System.out.println("get all dvds: "+e);
+		} finally {
+			if (result != null) {
+				result.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return categories;
+	}
 
 	public Boolean deleteProduct(int productID) throws SQLException {
 		System.out.println("Deleting product");
