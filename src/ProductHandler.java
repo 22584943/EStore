@@ -75,7 +75,6 @@ public class ProductHandler implements HttpHandler{
             for (Product p: coll) {
                 String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
                 String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
-
                 out.write(
                         "<tr>" +
                                 "<td>" + p.getID() +"</td>" +
@@ -87,6 +86,7 @@ public class ProductHandler implements HttpHandler{
                                 "<td>" + p.getStock() +"</td>" +
                                 showEdit +
                                 showDelete +
+                                "<td class=\"product-basket-cell\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form>" +
                                 "</tr>"
 
                 );
