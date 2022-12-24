@@ -9,6 +9,8 @@ public class Product {
  private String category;
  private int price;
 
+ private int quantityOrdered;
+
 
 	public Product(int id, String SKU, String category, String name, String description, int price, int stock) {
 		this.id = id;
@@ -29,6 +31,23 @@ public class Product {
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
+	}
+	// override for basket product to show
+	public Product(int id, int quantity, String SKU, String category, String name, String description, int price, int currentStock) {
+		this.id = id;
+		this.SKU = SKU;
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.quantityOrdered = quantity;
+		this.stock = currentStock;
+	}
+
+	// override for basket product
+	public Product(int id, int quantity) {
+		this.id = id;
+		this.quantityOrdered = quantity;
 	}
 
 
@@ -61,8 +80,10 @@ public class Product {
 	public int getPrice() {
 		return price;
 	}
-	
-	
+
+	public int getQuantityOrdered( ) {
+		return quantityOrdered;
+	}
 	public int getStock( ) {
 		return stock;
 	}
@@ -85,7 +106,10 @@ public class Product {
 	public void setPrice(int newPrice) {
 		this.price = newPrice;
 	}
-	
+
+	public void setQuantityOrdered(int q ) {
+		this.quantityOrdered = q;
+	}
 	public void setStock(int newStock ) {
 		this.stock = newStock;
 	}
