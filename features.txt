@@ -11,3 +11,7 @@ TODO:
 Add images
 prettify with icons
 refactor code!
+
+check if order can be fulfilled, i.e.stock greater > 0
+delete item from basket
+change price to decimal
