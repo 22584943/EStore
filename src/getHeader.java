@@ -117,6 +117,27 @@ public class getHeader {
                 ".search-form > * {\n" +
                 "height: 2em;" +
                 "margin: 0;}"+
+                "form[action=\"/basket/add\"] {\n" +
+                "    display: flex;\n" +
+                "    flex-direction: row;\n" +
+                "    margin: 0;\n" +
+                "    padding: 0;\n" +
+                "}" +
+                ".product-basket-cell {" +
+                "    width: 50px;}" +
+                ".product-basket-cell input,\n" +
+                ".product-basket-cell button {\n" +
+                "    height: 2.5em;\n" +
+                "}\n" +
+                ".product-basket-cell button {\n" +
+                "    width: 30%;\n" +
+                "}" +
+                "input[type=number]::-webkit-inner-spin-button,\n" +
+                "input[type=number]::-webkit-outer-spin-button {\n" +
+                "\n" +
+                "   opacity: 1;\n" +
+                "\n" +
+                "}" +
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
@@ -129,6 +150,7 @@ public class getHeader {
                 "                <ul>" +
                 "                    <li><a href=\"/products\">Products</a></li>" +
                 "                    <li><a href=\"/customers\">Customers</a></li>" +
+                "                    <li><a href=\"/basket\"><i class=\"bi bi-cart-fill\"></i></a></li>" +
                 "                    <li>" +
                         showLoginLink +
                 "</li>" +

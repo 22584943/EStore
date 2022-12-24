@@ -60,6 +60,16 @@ nav ul li:hover {
    cursor: pointer;
 }
 
+.basket-wrapper {
+display: flex;
+width: 100%;
+height: 100%;
+flex-direction: column;
+justify-content: center;
+align-items: center;}
+
+
+
 .form-wrapper {
     flex-direction: column;
     justify-content: flex-start;
@@ -117,4 +127,30 @@ margin: auto;
 
 .search-form > * {
 height: 2em;
-margin: 0;}
+margin: 0;
+}
+
+form[action="/basket/add"] {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+.product-basket-cell {
+    width: 50px;
+}
+.product-basket-cell input,
+.product-basket-cell button {
+    height: 2.5em;
+}
+.product-basket-cell button {
+    width: 30%;
+}
+/* always show arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+   opacity: 1;
+
+}
