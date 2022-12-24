@@ -27,6 +27,10 @@ class Main {
         server.createContext("/products/edit", new EditProductHandler() );
         server.createContext("/products/edit-product-handler", new EditProductFormHandler() );
         server.createContext("/products/product-search", new ProductSearchResultsHandler() );
+        server.createContext("/basket", new BasketHandler() );
+        server.createContext("/basket/add", new AddBasketHandler() );
+        server.createContext("/basket/empty", new EmptyBasketHandler() );
+        server.createContext("/basket/checkout", new CheckoutBasket() );
         server.createContext("/login", new LoginHandler() );
         server.createContext("/logout", new LogoutHandler() );
         server.createContext("/register-form-handler", new RegisterFormHandler() );
