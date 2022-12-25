@@ -1,26 +1,72 @@
- * {
+ html, body {
     font-family: Futura, \"Trebuchet MS\", Arial, sans-serif;
     padding: 0!important;
     margin: 0!important;
-    text-decoration: none!important;
     box-sizing: border-box!important;
 }
 a {
    color: inherit!important;
+   text-decoration: none!important;
 }
 header h1 {
    color: white;
    margin: 0!important;
 }
 
-.table-cont, .form-wrapper, .flex-center{
-    width: 100%;
+.form-wrapper, .flex-center{
+    width: 70%;
+    margin: auto;
     height: 100%;
     display: flex;
     justify-content:center;
     align-items: center;
 }
 
+.table-cont {
+justify-content: flex-start;
+width: 70%;
+margin: auto!important;
+border-radius: 10px;
+overflow: hidden;
+padding: 1em;
+}
+
+body {
+padding: 4em 0;}
+.category-btn-cont {
+display: flex;
+margin: auto;
+justify-content: center;
+align-items: center;
+}
+
+table {
+border-collapse: collapse;
+table-layout: fixed;}
+
+tbody{
+
+box-shadow: 0 0 0 1px white;
+overflow: hidden;
+border-radius: 10px 10px 0 0;}
+.category-btn-cont a {
+    padding: 0.25em 1em;
+    background: #0000ff;
+    color: white!important;
+    border: 1px white solid;
+    border-radius: 10px;
+    margin: 2em 1em;
+}
+
+h2, h3 {
+    width: 70%;
+    margin: 0 auto!important;
+    text-align: center;
+}
+
+h3 {
+    font-size: 0.9em;
+}
 .flex-down {
     flex-direction: column;
 }
@@ -68,7 +114,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;}
 
-
+.wrapper {
+    padding: 4em 0;
+}
 
 .form-wrapper {
     flex-direction: column;
@@ -100,6 +148,13 @@ form button[type="submit"] {
 }
 
 
+.tr {
+display: flex;
+justify-content: flex-start;
+align-items: center;
+padding: 0.25em 0.5em!important;
+}
+
 
 form .form-row {
     width: 100%;
@@ -117,8 +172,8 @@ form .form-row {
 
 /* search form */
 .search-form {
-min-width: 300px;
-width: 50%;
+min-width: 200px;
+width: 35%;
 display: flex;
 flex-direction: row;
 margin: auto;
@@ -153,4 +208,28 @@ input[type=number]::-webkit-outer-spin-button {
 
    opacity: 1;
 
+}
+
+
+.tr .cell-cont {
+width: 10%;}
+
+.tr:nth-of-type(odd) {
+    background: #5a5a5a;
+    color: white;
+}
+
+.tr:nth-of-type(even) {
+    background: #353535;
+    color: white;
+}
+
+.tr:nth-of-type(1) {
+    background: white;
+    color: black;
+}
+.tr .cell-cont{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
