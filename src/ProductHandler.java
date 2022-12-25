@@ -74,8 +74,8 @@ public class ProductHandler implements HttpHandler{
 
 
             for (Product p: coll) {
-                String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
-                String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
+                String showEdit = isLoggedIn ? "<a class=\"flex\" href=\"/products/edit?id=" + p.getID() +"\"><i class=\"bi bi-pencil-square\"></i><span>Edit</span></a>" : "";
+                String showDelete = isLoggedIn ? "<a class=\"flex\" href=\"/products/delete?id=" + p.getID() +"\"><i class=\"bi bi-trash-fill\"></i></i><span>Delete</span></a>" : "";
                 out.write(
                         "<div class=\"tr\">" +
                                 "<span class=\"cell-cont \">" + p.getID() +"</span>" +
