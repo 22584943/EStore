@@ -11,35 +11,82 @@ public class getHeader {
                 "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\" crossorigin=\"anonymous\">" +
                 "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4\" crossorigin=\"anonymous\"></script>" +
                 "        <style>" +
-                " * {\n" +
-                "    font-family: Futura, \"Trebuchet MS\", Arial, sans-serif;\n" +
-                "    padding: 0;\n" +
-                "    margin: 0;\n" +
-                "    text-decoration: none!important;\n" +
+                " html, body {\n" +
+                "    font-family: Futura, \\\"Trebuchet MS\\\", Arial, sans-serif;\n" +
+                "    padding: 0!important;\n" +
+                "    margin: 0!important;\n" +
                 "    box-sizing: border-box!important;\n" +
                 "}\n" +
                 "a {\n" +
                 "   color: inherit!important;\n" +
-                "}" +
+                "text-decoration: none!important;" +
+                "}\n" +
                 "header h1 {\n" +
                 "   color: white;\n" +
-                "   margin: 0!important;" +
+                "   margin: 0!important;\n" +
                 "}\n" +
                 "\n" +
-                ".table-cont, .form-wrapper, .flex-center {\n" +
-                "    width: 100%;\n" +
+                ".form-wrapper, .flex-center{\n" +
+                "    width: 70%;\n" +
+                "    margin: auto;\n" +
                 "    height: 100%;\n" +
                 "    display: flex;\n" +
                 "    justify-content:center;\n" +
                 "    align-items: center;\n" +
                 "}\n" +
+                "\n" +
+                ".table-cont {\n" +
+                "justify-content: flex-start;\n" +
+                "width: 70%;\n" +
+                "margin: auto!important;\n" +
+                "border-radius: 10px;\n" +
+                "overflow: hidden;\n" +
+                "padding: 1em;\n" +
+                "}\n" +
+                "\n" +
+                "body {\n" +
+                "padding: 4em 0;}\n" +
+                ".category-btn-cont {\n" +
+                "display: flex;\n" +
+                "margin: auto;\n" +
+                "justify-content: center;\n" +
+                "align-items: center;\n" +
+                "}\n" +
+                "\n" +
+                "table {\n" +
+                "border-collapse: collapse;\n" +
+                "table-layout: fixed;}\n" +
+                "\n" +
+                "tbody{\n" +
+                "\n" +
+                "box-shadow: 0 0 0 1px white;\n" +
+                "overflow: hidden;\n" +
+                "border-radius: 10px 10px 0 0;}\n" +
+                ".category-btn-cont a {\n" +
+                "    padding: 0.25em 1em;\n" +
+                "    background: #0000ff;\n" +
+                "    color: white!important;\n" +
+                "    border: 1px white solid;\n" +
+                "    border-radius: 10px;\n" +
+                "    margin: 2em 1em;\n" +
+                "}\n" +
+                "\n" +
+                "h2, h3 {\n" +
+                "    width: 70%;\n" +
+                "    margin: 0 auto!important;\n" +
+                "    text-align: center;\n" +
+                "}\n" +
+                "\n" +
+                "h3 {\n" +
+                "    font-size: 0.9em;\n" +
+                "}\n" +
                 ".flex-down {\n" +
                 "    flex-direction: column;\n" +
-                "}" +
+                "}\n" +
                 "header {\n" +
                 "   background: #000;\n" +
                 "   display: flex;\n" +
-                "   padding: 0.75em 3%;\n" +
+                "   padding: 0.75em 3%!important;\n" +
                 "   justify-content: space-between;\n" +
                 "   align-items: center;\n" +
                 "   color: white;\n" +
@@ -70,74 +117,135 @@ public class getHeader {
                 "}\n" +
                 "nav ul li:hover {\n" +
                 "   cursor: pointer;\n" +
-                "}" +
+                "}\n" +
+                "\n" +
+                ".basket-wrapper {\n" +
+                "display: flex;\n" +
+                "width: 100%;\n" +
+                "height: 100%;\n" +
+                "flex-direction: column;\n" +
+                "justify-content: center;\n" +
+                "align-items: center;}\n" +
+                "\n" +
+                ".wrapper {\n" +
+                "    padding: 4em 0;\n" +
+                "}\n" +
+                "\n" +
                 ".form-wrapper {\n" +
                 "    flex-direction: column;\n" +
-                "    justify-content: flex-start;" +
-                "    padding-top: 200px;" +
-                "}" +
+                "    justify-content: flex-start;\n" +
+                "    padding-top: 200px;\n" +
+                "}\n" +
+                "\n" +
                 "form {\n" +
                 "    display: flex;\n" +
                 "    flex-direction: column;\n" +
                 "    justify-content: center;\n" +
                 "    align-items: center;\n" +
-                "    min-width: 250px; \n" +
-                "    padding-top: 2em;" +
+                "    min-width: 250px;\n" +
+                "    padding-top: 2em;\n" +
                 "}\n" +
+                "\n" +
+                ".form-wrapper input, .form-wrapper button[type=\"submit\"] {\n" +
+                "    padding: 0.5em;\n" +
+                "    margin-bottom: 1em;\n" +
+                "    width: 100%;\n" +
+                "}\n" +
+                "\n" +
                 "form button[type=\"submit\"] {\n" +
                 "    width: 100%;\n" +
                 "    background: navy;\n" +
                 "    color: white;\n" +
                 "    text-transform: uppercase;\n" +
-                "    border: none;"+
-                "}" +
-                ".form-wrapper input, .form-wrapper button[type=\"submit\"] {\n" +
-                "   width: 100%;" +
-                "    padding: 0.5em;\n" +
-                "    margin-bottom: 1em;\n" +
-                "}" +
+                "    border: none;\n" +
+                "}\n" +
+                "\n" +
+                "\n" +
+                ".tr {\n" +
+                "display: flex;\n" +
+                "justify-content: flex-start;\n" +
+                "align-items: center;\n" +
+                "padding: 0.25em 0.5em!important;\n" +
+                "}\n" +
+                "\n" +
+                "\n" +
                 "form .form-row {\n" +
-                "    width: 100%;" +
+                "    width: 100%;\n" +
                 "    display: flex;\n" +
                 "    flex-direction: column;\n" +
                 "    align-items: flex-start;\n" +
-                "}"+
+                "}\n" +
+                "\n" +
                 ".edit-product-form {\n" +
                 "    width: 70%;\n" +
                 "    margin: auto;\n" +
                 "    display: flex;\n" +
                 "    flex-direction: column;\n" +
-                "}" +
+                "}\n" +
+                "\n" +
+                "/* search form */\n" +
                 ".search-form {\n" +
-                "min-width: 300px;\n" +
-                "width: 50%;\n" +
+                "min-width: 200px;\n" +
+                "width: 35%;\n" +
                 "display: flex;\n" +
-                "flex-direction: row;" +
-                "margin: auto;}" +
+                "flex-direction: row;\n" +
+                "margin: auto;\n" +
+                "\n" +
+                "}\n" +
+                "\n" +
                 ".search-form > * {\n" +
-                "height: 2em;" +
-                "margin: 0;}"+
+                "height: 2em;\n" +
+                "margin: 0;\n" +
+                "}\n" +
+                "\n" +
                 "form[action=\"/basket/add\"] {\n" +
                 "    display: flex;\n" +
                 "    flex-direction: row;\n" +
                 "    margin: 0;\n" +
                 "    padding: 0;\n" +
-                "}" +
-                ".product-basket-cell {" +
-                "    width: 50px;}" +
+                "}\n" +
+                "\n" +
+                ".product-basket-cell {\n" +
+                "    width: 50px;\n" +
+                "}\n" +
                 ".product-basket-cell input,\n" +
                 ".product-basket-cell button {\n" +
                 "    height: 2.5em;\n" +
                 "}\n" +
                 ".product-basket-cell button {\n" +
                 "    width: 30%;\n" +
-                "}" +
+                "}\n" +
+                "/* always show arrows */\n" +
                 "input[type=number]::-webkit-inner-spin-button,\n" +
                 "input[type=number]::-webkit-outer-spin-button {\n" +
                 "\n" +
                 "   opacity: 1;\n" +
                 "\n" +
-                "}" +
+                "}\n" +
+                "\n" +
+                "\n" +
+                ".tr .cell-cont {\n" +
+                "width: 10%;}\n" +
+                "\n" +
+                ".tr:nth-of-type(odd) {\n" +
+                "    background: #5a5a5a;\n" +
+                "    color: white;\n" +
+                "}\n" +
+                "\n" +
+                ".tr:nth-of-type(even) {\n" +
+                "    background: #353535;\n" +
+                "    color: white;\n" +
+                "}\n" +
+                ".tr:nth-of-type(1) {\n" +
+                "    background: white;\n" +
+                "    color: black;\n" +
+                "}\n" +
+                "/*\n" +
+                ".tr .cell-cont{\n" +
+                "    display: flex;\n" +
+                "    justify-content: flex-start;\n" +
+                "    align-items: center;\n" +
+                "}\n"+
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
