@@ -21,14 +21,15 @@ public class ProductHandler implements HttpHandler{
         // Check if logged in
         boolean isLoggedIn = ud.isLoggedIn();
         // Condition button render
-
+        String AddDeleteColumn = isLoggedIn ? "<div class=\"cell-cont\"></div><div class=\"cell-cont\"></div>" : "";
         try {
             String showAdd = isLoggedIn ? "<div><a href=\"/products/add\"><span>Add Product</span></a></div>" : "";
             coll = products.getProducts();
             ArrayList<String> categories = products.getCategories();
             out.write(
                     getHeader.get() +
-                            "<h1>Here be products...</h1>" +
+                            "<div class=\"wrapper\">" +
+                            "<h2>Product Listings</h2>" +
                             "<form class=\"search-form\" action=\"products\\product-search\" method=\"get\">\n" +
                             "            <select name=\"searchType\">\n" +
                             "                <option value=\"id\">id</option>\n" +
@@ -39,34 +40,34 @@ public class ProductHandler implements HttpHandler{
                             "            </select>\n" +
                             "            <input name=\"query\" type=\"text\" />\n" +
                             "           <button type=\"submit\">Search</button>" +
-                            "        </form>"
+                            "        </form>" +
+                            "       <div class=\"category-btn-cont\"><span>Categories: </span>"
             );
             for (String category: categories) {
 
 
                 out.write(
 
-                        "<div><a href=\"products/product-search?searchType=category&query=" + category +"\">"+ category +"</a></div>"
+                        "<a href=\"products/product-search?searchType=category&query=" + category +"\">"+ category +"</a>"
 
 
                 );
             }
 
             out.write(
+                                "</div>" +
                             "<div class=\"table-cont\">" +
-                                "<table class=\"table table-dark table-striped\">" +
-                                "<thead>" +
-                                "<tr>" +
-                                "<th class=\"col\">ID</th>" +
-                                "<th class=\"col\">SKU</th>" +
-                                "<th class=\"col\">Category</th>" +
-                                "<th class=\"col\">Name</th>" +
-                                "<th class=\"col\">Description</th>" +
-                                "<th class=\"col\">Price</th>" +
-                                "<th class=\"col\">Stock</th>" +
-                                "</tr>" +
-                                "</thead>" +
-                                "<tbody>"
+
+                                "<div class=\"tr\">" +
+                                "<div class=\"cell-cont\">ID</div>" +
+                                "<div class=\"cell-cont\">SKU</div>" +
+                                "<div class=\"cell-cont\">Category</div>" +
+                                "<div class=\"cell-cont\">Name</div>" +
+                                "<div class=\"cell-cont\">Description</div>" +
+                                "<div class=\"cell-cont\">Price</div>" +
+                                "<div class=\"cell-cont\">Stock</div>" +
+                                        AddDeleteColumn +
+                                "</div>"
 
             );
 
@@ -76,26 +77,26 @@ public class ProductHandler implements HttpHandler{
                 String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
                 String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
                 out.write(
-                        "<tr>" +
-                                "<td>" + p.getID() +"</td>" +
-                                "<td>" + p.getSKU() +"</td>" +
-                                "<td>" + p.getCategory() +"</td>" +
-                                "<td>" + p.getName() +"</td>" +
-                                "<td>" + p.getDescription() +"</td>" +
-                                "<td>" + p.getPrice() +"</td>" +
-                                "<td>" + p.getStock() +"</td>" +
+                        "<div class=\"tr\">" +
+                                "<span class=\"cell-cont \">" + p.getID() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getSKU() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getCategory() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getName() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getDescription() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getPrice() +"</span>" +
+                                "<span class=\"cell-cont \">" + p.getStock() +"</span>" +
+
                                 showEdit +
                                 showDelete +
-                                "<td class=\"product-basket-cell\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form>" +
-                                "</tr>"
+                                "<span class=\"product-basket-cell cell-cont\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form></span>" +
+                                "</div>"
 
                 );
             }
             out.write(
 
 
-                    "</tbody>" +
-                            "</table>" +
+                        "</div>" +
                             "</div>" +
                             showAdd +
                             "</body>" +
