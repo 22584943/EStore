@@ -8,6 +8,28 @@ a {
    color: inherit!important;
    text-decoration: none!important;
 }
+
+/* Custom scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 header h1 {
    color: white;
    margin: 0!important;
@@ -24,7 +46,7 @@ header h1 {
 
 .table-cont {
 justify-content: flex-start;
-width: 70%;
+width: 80%;
 margin: auto!important;
 border-radius: 10px;
 overflow: hidden;
@@ -40,15 +62,7 @@ justify-content: center;
 align-items: center;
 }
 
-table {
-border-collapse: collapse;
-table-layout: fixed;}
 
-tbody{
-
-box-shadow: 0 0 0 1px white;
-overflow: hidden;
-border-radius: 10px 10px 0 0;}
 .category-btn-cont a {
     padding: 0.25em 1em;
     background: #0000ff;
@@ -67,6 +81,9 @@ h2, h3 {
 h3 {
     font-size: 0.9em;
 }
+
+.flex {
+display: flex;}
 .flex-down {
     flex-direction: column;
 }
@@ -155,6 +172,14 @@ align-items: center;
 padding: 0.25em 0.5em!important;
 }
 
+.tr a {
+display: flex;
+align-items: center;
+font-size: 0.9em;
+}
+.tr a i {
+    padding-right: 0.25em;
+}
 
 form .form-row {
     width: 100%;
@@ -193,8 +218,11 @@ form[action="/basket/add"] {
 }
 
 .product-basket-cell {
-    width: 50px;
+    width: 200px;
 }
+
+.product-basket-cell form {
+width: 100%;}
 .product-basket-cell input,
 .product-basket-cell button {
     height: 2.5em;
@@ -210,6 +238,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
+form input[type=number] {
+    width:50px;
+}
+
+.product-basket-cell form button {
+width: 50px;
+}
 
 .tr .cell-cont {
 width: 10%;}

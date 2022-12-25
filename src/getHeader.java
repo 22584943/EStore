@@ -19,7 +19,29 @@ public class getHeader {
                 "}\n" +
                 "a {\n" +
                 "   color: inherit!important;\n" +
-                "text-decoration: none!important;" +
+                "   text-decoration: none!important;\n" +
+                "}\n" +
+                "\n" +
+                "/* Custom scrollbar */\n" +
+                "\n" +
+                "/* width */\n" +
+                "::-webkit-scrollbar {\n" +
+                "  width: 10px;\n" +
+                "}\n" +
+                "\n" +
+                "/* Track */\n" +
+                "::-webkit-scrollbar-track {\n" +
+                "  background: #f1f1f1;\n" +
+                "}\n" +
+                "\n" +
+                "/* Handle */\n" +
+                "::-webkit-scrollbar-thumb {\n" +
+                "  background: #888;\n" +
+                "}\n" +
+                "\n" +
+                "/* Handle on hover */\n" +
+                "::-webkit-scrollbar-thumb:hover {\n" +
+                "  background: #555;\n" +
                 "}\n" +
                 "header h1 {\n" +
                 "   color: white;\n" +
@@ -37,7 +59,7 @@ public class getHeader {
                 "\n" +
                 ".table-cont {\n" +
                 "justify-content: flex-start;\n" +
-                "width: 70%;\n" +
+                "width: 80%;\n" +
                 "margin: auto!important;\n" +
                 "border-radius: 10px;\n" +
                 "overflow: hidden;\n" +
@@ -53,15 +75,7 @@ public class getHeader {
                 "align-items: center;\n" +
                 "}\n" +
                 "\n" +
-                "table {\n" +
-                "border-collapse: collapse;\n" +
-                "table-layout: fixed;}\n" +
                 "\n" +
-                "tbody{\n" +
-                "\n" +
-                "box-shadow: 0 0 0 1px white;\n" +
-                "overflow: hidden;\n" +
-                "border-radius: 10px 10px 0 0;}\n" +
                 ".category-btn-cont a {\n" +
                 "    padding: 0.25em 1em;\n" +
                 "    background: #0000ff;\n" +
@@ -166,9 +180,22 @@ public class getHeader {
                 "justify-content: flex-start;\n" +
                 "align-items: center;\n" +
                 "padding: 0.25em 0.5em!important;\n" +
+                "}" +
+                "\n" +
+                ".tr a {\n" +
+                "display: flex;\n" +
+                "align-items: center;\n" +
+                "font-size: 0.9em;\n" +
                 "}\n" +
-                "\n" +
-                "\n" +
+                "form input[type=number] {\n" +
+                "    width:50px;\n" +
+                "}" +
+                ".product-basket-cell form button {\n" +
+                "width: 50px;\n" +
+                "}" +
+                ".tr a i {\n" +
+                "    padding-right: 0.25em;\n" +
+                "}}" +
                 "form .form-row {\n" +
                 "    width: 100%;\n" +
                 "    display: flex;\n" +
@@ -206,8 +233,11 @@ public class getHeader {
                 "}\n" +
                 "\n" +
                 ".product-basket-cell {\n" +
-                "    width: 50px;\n" +
+                "    width: 200px;\n" +
                 "}\n" +
+                "\n" +
+                ".product-basket-cell form {\n" +
+                "width: 100%;}\n" +
                 ".product-basket-cell input,\n" +
                 ".product-basket-cell button {\n" +
                 "    height: 2.5em;\n" +
@@ -236,16 +266,17 @@ public class getHeader {
                 "    background: #353535;\n" +
                 "    color: white;\n" +
                 "}\n" +
+                "\n" +
                 ".tr:nth-of-type(1) {\n" +
                 "    background: white;\n" +
                 "    color: black;\n" +
                 "}\n" +
-                "/*\n" +
                 ".tr .cell-cont{\n" +
                 "    display: flex;\n" +
                 "    justify-content: flex-start;\n" +
                 "    align-items: center;\n" +
                 "}\n"+
+                ".flex {display: flex;}" +
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
@@ -258,10 +289,10 @@ public class getHeader {
                 "                <ul>" +
                 "                    <li><a href=\"/products\">Products</a></li>" +
                 "                    <li><a href=\"/customers\">Customers</a></li>" +
-                "                    <li><a href=\"/basket\"><i class=\"bi bi-cart-fill\"></i></a></li>" +
                 "                    <li>" +
                         showLoginLink +
                 "</li>" +
+                "                    <li><a href=\"/basket\"><i class=\"bi bi-cart-fill\"></i></a></li>" +
                 "                </ul>" +
                 "            </nav>" +
                 "        </header>";
