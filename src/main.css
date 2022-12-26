@@ -179,6 +179,11 @@ font-size: 0.9em;
 }
 .tr a i {
     padding-right: 0.25em;
+    padding-bottom: 0.2em;
+}
+
+.tr a:hover {
+color: blue;
 }
 
 form .form-row {
@@ -239,11 +244,15 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 form input[type=number] {
-    width:50px;
+    width:60px;
 }
 
 .product-basket-cell form button {
 width: 50px;
+}
+
+.tr a span {
+margin-right: 1em;
 }
 
 .tr .cell-cont {
@@ -267,4 +276,19 @@ width: 10%;}
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.checkout-total-cont {
+display: flex;
+margin-left: 0;
+flex-direction: column;
+align-items: flex-end;
+font-weight: bold;
+}
+
+.checkout-btn {
+background: orange;
+color: white!important;
+padding: 0.25em 0.5em;
+border-radius: 10px;
 }

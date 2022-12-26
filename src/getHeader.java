@@ -188,14 +188,21 @@ public class getHeader {
                 "font-size: 0.9em;\n" +
                 "}\n" +
                 "form input[type=number] {\n" +
-                "    width:50px;\n" +
+                "    width:60px;\n" +
+                "}" +
+                ".tr a span {\n" +
+                "margin-right: 1em;\n" +
                 "}" +
                 ".product-basket-cell form button {\n" +
                 "width: 50px;\n" +
                 "}" +
                 ".tr a i {\n" +
                 "    padding-right: 0.25em;\n" +
+                "padding-bottom: 0.2em;" +
                 "}}" +
+                ".tr a:hover {\n" +
+                "color: blue;" +
+                "}" +
                 "form .form-row {\n" +
                 "    width: 100%;\n" +
                 "    display: flex;\n" +
@@ -245,15 +252,12 @@ public class getHeader {
                 ".product-basket-cell button {\n" +
                 "    width: 30%;\n" +
                 "}\n" +
-                "/* always show arrows */\n" +
-                "input[type=number]::-webkit-inner-spin-button,\n" +
-                "input[type=number]::-webkit-outer-spin-button {\n" +
+                "input[type=number]::-webkit-inner-spin-button, \n" +
+                "input[type=number]::-webkit-outer-spin-button {  \n" +
                 "\n" +
                 "   opacity: 1;\n" +
                 "\n" +
-                "}\n" +
-                "\n" +
-                "\n" +
+                "}" +
                 ".tr .cell-cont {\n" +
                 "width: 10%;}\n" +
                 "\n" +
@@ -277,6 +281,19 @@ public class getHeader {
                 "    align-items: center;\n" +
                 "}\n"+
                 ".flex {display: flex;}" +
+                ".checkout-total-cont {\n" +
+                "display: flex;\n" +
+                "margin-left: 0;\n" +
+                "flex-direction: column;\n" +
+                "align-items: flex-end;\n" +
+                "font-weight: bold;\n" +
+                "}" +
+                ".checkout-btn {\n" +
+                "background: orange;\n" +
+                "color: white!important;\n" +
+                "padding: 0.25em 0.5em;\n" +
+                "border-radius: 10px;\n" +
+                "}" +
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
