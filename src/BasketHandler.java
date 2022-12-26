@@ -64,10 +64,10 @@ public class BasketHandler implements HttpHandler{
             }
 
 
-
+            int total = 0;
             for (Product p: coll) {
                 String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
-
+                total += p.getPrice() * p.getQuantityOrdered();
                 out.write(
                         "<tr>" +
                                 "<td>" + p.getID() +"</td>" +
@@ -90,7 +90,10 @@ public class BasketHandler implements HttpHandler{
                 out.write(
                 "</tbody>" +
                         "</table>" +
-                        "<a href=\"/basket/checkout\">Checkout</a>" +
+                        "<div class=\"checkout-total-cont\">" +
+                        "<span>Total: " + total + "</span>" +
+                        "<a class=\"checkout-btn\" href=\"/basket/checkout\">Checkout Now</a>" +
+                        "</div>" +
                         "</div>");
             }
             out.write(
