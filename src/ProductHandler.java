@@ -3,6 +3,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -66,7 +67,6 @@ public class ProductHandler implements HttpHandler{
                                 "<div class=\"cell-cont\">Description</div>" +
                                 "<div class=\"cell-cont\">Price</div>" +
                                 "<div class=\"cell-cont\">Stock</div>" +
-                                        AddDeleteColumn +
                                 "</div>"
 
             );
@@ -74,6 +74,10 @@ public class ProductHandler implements HttpHandler{
 
 
             for (Product p: coll) {
+                DecimalFormat formatter = new DecimalFormat("0.00");
+
+                double fPrice = (double)p.getPrice()/100;
+                String formattedPrice = formatter.format(fPrice);
                 String showEdit = isLoggedIn ? "<a class=\"flex\" href=\"/products/edit?id=" + p.getID() +"\"><i class=\"bi bi-pencil-square\"></i><span>Edit</span></a>" : "";
                 String showDelete = isLoggedIn ? "<a class=\"flex\" href=\"/products/delete?id=" + p.getID() +"\"><i class=\"bi bi-trash-fill\"></i></i><span>Delete</span></a>" : "";
                 out.write(
@@ -83,7 +87,7 @@ public class ProductHandler implements HttpHandler{
                                 "<span class=\"cell-cont \">" + p.getCategory() +"</span>" +
                                 "<span class=\"cell-cont \">" + p.getName() +"</span>" +
                                 "<span class=\"cell-cont \">" + p.getDescription() +"</span>" +
-                                "<span class=\"cell-cont \">" + p.getPrice() +"</span>" +
+                                "<span class=\"cell-cont \">&#163;" + formattedPrice +"</span>" +
                                 "<span class=\"cell-cont \">" + p.getStock() +"</span>" +
 
                                 showEdit +
