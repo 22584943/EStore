@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class UserDAO {
-    static boolean loggedIn = false;
+    private static boolean loggedIn = false;
     public UserDAO() {}
 
     private static Connection getDBConnection() {
