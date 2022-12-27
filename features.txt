@@ -1,17 +1,22 @@
-Authorisation - only logged in users can access product edit pages
+Authorisation - only logged in users can access product edit/delete pages
 Secure sending of form data using post rather than get - used utility to grab postData
-Authentication and password hashing using BCrypt
+Authentication and password hashing using BCrypt (more secure than MD5 - found good utility code)
 partial search matching products
-
-
-
+project backed up with git
+check if order can be fulfilled, i.e.stock greater > 0, returns error message obj if not - expanded on return boolean success into response object with multiple fields
+if item already in basket, update total instead of creating duplicates
+create basket table, to keep hold of basket
 TODO:
 
 
 Add images
 prettify with icons
 refactor code!
+reorganise file structure
+customer class to do - get back from db, split by "," put into hashmap
 
-check if order can be fulfilled, i.e.stock greater > 0
+
 delete item from basket
-change price to decimal
+genereal search of all fields
+console app add stock, etc
+console app bugs
