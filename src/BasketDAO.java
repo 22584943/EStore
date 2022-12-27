@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class BasketDAO {
@@ -27,8 +28,7 @@ public class BasketDAO {
     public boolean addProductToBasket(int productID, int quantity, int currentStock) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
-
-        String update = "INSERT INTO basket (id, currentStock, quantity) VALUES ("+productID + ","+ currentStock + "," + quantity+");";
+        String update = "INSERT INTO basket (id, currentStock, quantity) VALUES ("+productID + ","+ currentStock + "," + quantity+") ON CONFLICT(id) DO UPDATE SET quantity=quantity+" + quantity +";";
         boolean ok = false;
         try {
             dbConnection = getDBConnection();
@@ -117,7 +117,7 @@ public class BasketDAO {
         return ok;
     }
 
-    public boolean checkoutBasket(ArrayList<Product> basket) throws SQLException {
+    public ResponseObject checkoutBasket(ArrayList<Product> basket) throws SQLException {
         System.out.println("checking out basket...");
         Connection dbConnection = null;
         PreparedStatement st = null;
@@ -126,18 +126,25 @@ public class BasketDAO {
 
 
         boolean ok = false;
+
+        StringBuilder errorMessage = new StringBuilder();
         try {
             for (Product product : basket) {
                 System.out.println(product.getStock());
                 System.out.println(product.getQuantityOrdered());
                 int updatedStock = product.getStock() - product.getQuantityOrdered();
-                query = "UPDATE products SET stock=" + updatedStock + " WHERE id=" + product.getID() +";";
-                dbConnection = getDBConnection();
-                System.out.println(query);
-                st = dbConnection.prepareStatement(query);
+                if (updatedStock <= 0) {
+                    errorMessage.append(product.getID()).append(", ").append("Out of Stock").append(";");
 
-                st.executeUpdate();
-                ok = true;
+                } else {
+                    query = "UPDATE products SET stock=" + updatedStock + " WHERE id=" + product.getID() + ";";
+                    dbConnection = getDBConnection();
+                    System.out.println(query);
+                    st = dbConnection.prepareStatement(query);
+
+                    st.executeUpdate();
+                    ok = true;
+                }
                 // TODO - if something goes wrong, break
             }
 
@@ -152,6 +159,8 @@ public class BasketDAO {
             }
         }
         emptyBasket();
-        return ok;
+        // return response object with success and error message
+        ResponseObject responseObject = new ResponseObject(ok, errorMessage.toString());
+        return responseObject;
     }
 }
