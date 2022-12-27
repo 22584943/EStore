@@ -48,7 +48,7 @@ public class getHeader {
                 "   margin: 0!important;\n" +
                 "}\n" +
                 "\n" +
-                ".form-wrapper, .flex-center{\n" +
+                ".login-wrapper, .flex-center{\n" +
                 "    width: 70%;\n" +
                 "    margin: auto;\n" +
                 "    height: 100%;\n" +
@@ -94,6 +94,9 @@ public class getHeader {
                 "h3 {\n" +
                 "    font-size: 0.9em;\n" +
                 "}\n" +
+                "\n" +
+                ".flex {\n" +
+                "display: flex;}\n" +
                 ".flex-down {\n" +
                 "    flex-direction: column;\n" +
                 "}\n" +
@@ -145,13 +148,13 @@ public class getHeader {
                 "    padding: 4em 0;\n" +
                 "}\n" +
                 "\n" +
-                ".form-wrapper {\n" +
+                ".login-wrapper {\n" +
                 "    flex-direction: column;\n" +
                 "    justify-content: flex-start;\n" +
                 "    padding-top: 200px;\n" +
                 "}\n" +
                 "\n" +
-                "form {\n" +
+                ".login-wrapper form {\n" +
                 "    display: flex;\n" +
                 "    flex-direction: column;\n" +
                 "    justify-content: center;\n" +
@@ -160,7 +163,7 @@ public class getHeader {
                 "    padding-top: 2em;\n" +
                 "}\n" +
                 "\n" +
-                ".form-wrapper input, .form-wrapper button[type=\"submit\"] {\n" +
+                ".login-wrapper input, .login-wrapper button[type=\"submit\"] {\n" +
                 "    padding: 0.5em;\n" +
                 "    margin-bottom: 1em;\n" +
                 "    width: 100%;\n" +
@@ -180,29 +183,22 @@ public class getHeader {
                 "justify-content: flex-start;\n" +
                 "align-items: center;\n" +
                 "padding: 0.25em 0.5em!important;\n" +
-                "}" +
+                "}\n" +
                 "\n" +
                 ".tr a {\n" +
                 "display: flex;\n" +
                 "align-items: center;\n" +
                 "font-size: 0.9em;\n" +
                 "}\n" +
-                "form input[type=number] {\n" +
-                "    width:60px;\n" +
-                "}" +
-                ".tr a span {\n" +
-                "margin-right: 1em;\n" +
-                "}" +
-                ".product-basket-cell form button {\n" +
-                "width: 50px;\n" +
-                "}" +
                 ".tr a i {\n" +
                 "    padding-right: 0.25em;\n" +
-                "padding-bottom: 0.2em;" +
-                "}}" +
+                "    padding-bottom: 0.2em;\n" +
+                "}\n" +
+                "\n" +
                 ".tr a:hover {\n" +
-                "color: blue;" +
-                "}" +
+                "color: blue;\n" +
+                "}\n" +
+                "\n" +
                 "form .form-row {\n" +
                 "    width: 100%;\n" +
                 "    display: flex;\n" +
@@ -252,15 +248,35 @@ public class getHeader {
                 ".product-basket-cell button {\n" +
                 "    width: 30%;\n" +
                 "}\n" +
-                "input[type=number]::-webkit-inner-spin-button, \n" +
-                "input[type=number]::-webkit-outer-spin-button {  \n" +
+                "/* always show arrows */\n" +
+                "input[type=number]::-webkit-inner-spin-button,\n" +
+                "input[type=number]::-webkit-outer-spin-button {\n" +
                 "\n" +
                 "   opacity: 1;\n" +
                 "\n" +
-                "}" +
-                ".tr .cell-cont {\n" +
-                "width: 10%;}\n" +
+                "}\n" +
                 "\n" +
+                "form input[type=number] {\n" +
+                "    width:60px;\n" +
+                "}\n" +
+                "\n" +
+                ".product-basket-cell form button {\n" +
+                "width: 50px;\n" +
+                "}\n" +
+                "\n" +
+                ".tr a span {\n" +
+                "margin-right: 1em;\n" +
+                "}\n" +
+                "\n" +
+                ".tr .cell-cont {\n" +
+                "width: 11%;}\n" +
+                "\n" +
+                ".tr .cell-cont:nth-of-type(5) {\n" +
+                "width: 23%;}" +
+                ".edit-btn-cell {\n" +
+                "display: flex;\n" +
+                "color: #bfbfff;\n" +
+                "}" +
                 ".tr:nth-of-type(odd) {\n" +
                 "    background: #5a5a5a;\n" +
                 "    color: white;\n" +
@@ -279,15 +295,16 @@ public class getHeader {
                 "    display: flex;\n" +
                 "    justify-content: flex-start;\n" +
                 "    align-items: center;\n" +
-                "}\n"+
-                ".flex {display: flex;}" +
+                "}\n" +
+                "\n" +
                 ".checkout-total-cont {\n" +
                 "display: flex;\n" +
                 "margin-left: 0;\n" +
                 "flex-direction: column;\n" +
                 "align-items: flex-end;\n" +
                 "font-weight: bold;\n" +
-                "}" +
+                "}\n" +
+                "\n" +
                 ".checkout-btn {\n" +
                 "background: orange;\n" +
                 "color: white!important;\n" +
