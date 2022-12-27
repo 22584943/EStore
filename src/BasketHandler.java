@@ -3,6 +3,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class BasketHandler implements HttpHandler{
             if (coll.size() > 0) {
                 out.write(
                         "<a href=\"basket/empty\">Empty basket</a>" +
-                        "<div class=\"table-cont\">" +
+                                "<div class=\"table-cont\">" +
                                 "<table class=\"table table-dark table-striped\">" +
                                 "<thead>" +
                                 "<tr>" +
@@ -64,20 +65,28 @@ public class BasketHandler implements HttpHandler{
             }
 
 
-            int total = 0;
-            for (Product p: coll) {
-                String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
-                total += p.getPrice() * p.getQuantityOrdered();
+            double totalPrice = 0;
+            DecimalFormat formatter = null;
+            for (Product p : coll) {
+                formatter = new DecimalFormat("0.00");
+
+                double fPrice = (double) p.getPrice() / 100;
+                String formattedPrice = formatter.format(fPrice);
+
+                double fItemTotalPrice = (double) p.getPrice() * p.getQuantityOrdered() / 100;
+                String formattedItemTotalPrice = formatter.format(fItemTotalPrice);
+                String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() + "\">Delete</a></td>" : "";
+                totalPrice += fItemTotalPrice;
                 out.write(
                         "<tr>" +
-                                "<td>" + p.getID() +"</td>" +
-                                "<td>" + p.getSKU() +"</td>" +
-                                "<td>" + p.getCategory() +"</td>" +
-                                "<td>" + p.getName() +"</td>" +
-                                "<td>" + p.getDescription() +"</td>" +
-                                "<td>" + p.getPrice() +"</td>" +
-                                "<td>" + p.getQuantityOrdered() +"</td>" +
-                                "<td>" + p.getPrice() * p.getQuantityOrdered() +"</td>" +
+                                "<td>" + p.getID() + "</td>" +
+                                "<td>" + p.getSKU() + "</td>" +
+                                "<td>" + p.getCategory() + "</td>" +
+                                "<td>" + p.getName() + "</td>" +
+                                "<td>" + p.getDescription() + "</td>" +
+                                "<td>&#163;" + formattedPrice + "</td>" +
+                                "<td>" + p.getQuantityOrdered() + "</td>" +
+                                "<td>&#163;" + formattedItemTotalPrice + "</td>" +
                                 showDelete +
                                 "</tr>"
 
@@ -85,22 +94,21 @@ public class BasketHandler implements HttpHandler{
 
 
             }
-
+            String formattedTotalPrice = formatter.format(totalPrice);
             if (coll.size() > 0) {
                 out.write(
-                "</tbody>" +
-                        "</table>" +
-                        "<div class=\"checkout-total-cont\">" +
-                        "<span>Total: " + total + "</span>" +
-                        "<a class=\"checkout-btn\" href=\"/basket/checkout\">Checkout Now</a>" +
-                        "</div>" +
-                        "</div>");
+                        "</tbody>" +
+                                "</table>" +
+                                "<div class=\"checkout-total-cont\">" +
+                                "<span>Total: &#163;" + formattedTotalPrice + "</span>" +
+                                "<a class=\"checkout-btn\" href=\"/basket/checkout\">Checkout Now</a>" +
+                                "</div>" +
+                                "</div>");
             }
             out.write(
 
 
-
-                            "</div>" +
+                    "</div>" +
                             "</body>" +
                             "</html>"
             );
