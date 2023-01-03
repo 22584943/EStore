@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 public class Controller {
 	private static String selection;
+	private static String inputSKU;
 	private static int inputStock;
 	private static String inputCategory;
 	private static String inputName;
@@ -215,15 +216,16 @@ public class Controller {
 	}
 	
 	static public void addNewProduct() {
-//		 System.out.println("\nEnter product SKU");
-//		 inputSKU = in.nextLine();
+		 System.out.println("\nEnter product SKU");
+		 inputSKU = in.nextLine();
 		 System.out.println("\nEnter product category");
 		 inputCategory = in.nextLine();
 		 System.out.println("\nEnter initialStock");
 		 inputStock = in.nextInt();
+		 // do next line to avoid skipping line bug
+		 in.nextLine();
 		 System.out.println("\nEnter product name");
 		 inputName = in.nextLine();
-		
 		 System.out.println("\nEnter product description");
 		 inputDescription = in.nextLine();
 		//TODO make checkIfProductExists more robust - check item name and description
@@ -231,10 +233,17 @@ public class Controller {
 		System.out.println("\nEnter product price");
 		inputPrice = in.nextInt();
 			 
-			
-		// Create new product, add to arrayList
-//		Product newProduct = new Product(new UUID(r.nextLong(), r.nextLong()), inputStock, inputCategory, inputName, inputDescription, inputPrice);
-//		products.add(newProduct);
+
+		// Create new product, add to db
+		Product newProduct = new Product(inputSKU,inputCategory, inputName, inputDescription, inputPrice, inputStock);
+		try {
+			ProductDAO productDAO = new ProductDAO();
+			productDAO.addProduct(newProduct);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 	static public void searchProductBySKU() {
 		System.out.println("\nSearch for a product by SKU");
@@ -243,7 +252,7 @@ public class Controller {
 		 // filter products to match input SKU
 		 List<Product> productMatch = products
 				  .stream()
-				  .filter(p -> p.getSKU().equals(UUID.fromString(inputSKU)))
+				  .filter(p -> p.getSKU().equals(inputSKU))
 				  .collect(Collectors.toList());
 		 System.out.println(productMatch.get(0));
 		 
