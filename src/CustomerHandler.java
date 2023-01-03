@@ -39,6 +39,8 @@ public class CustomerHandler implements HttpHandler{
             );
             String showAdd = isLoggedIn ? "<div><a href=\"/customers/add\"><span>Add Customer</span></a></div>" : "";
             for (Customer c: coll) {
+                Address cAddress = c.getAddress();
+                String cAddressToString = cAddress.toString();
                 // Condition button render
                 String showEdit = isLoggedIn ? "<td><a href=\"/customers/edit?id=" + c.getID() + "\">Edit</a></td>" : "";
                 String showDelete = isLoggedIn ? "<td><a href=\"/customers/delete?id=" + c.getID() +"\">Delete</a></td>" : "";

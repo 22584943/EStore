@@ -19,7 +19,7 @@ public class Address {
 		return houseNumber;
 	}
 	
-	public String getfirstLine() {
+	public String getFirstLine() {
 		return firstLine;
 	}
 	
@@ -30,13 +30,17 @@ public class Address {
 	public String getCountyState() {
 		return countyState;
 	}
+
+	public String getPostcode() {
+		return postcode;
+	}
 	
 	public String getCountry() {
 		return country;
 	}
 	
 	public String toString() {
-		return "{" + houseNumber + " " + firstLine + ", " + town + ", " + countyState + ", " + postcode + ", " + country + "}";
+		return houseNumber + ", " + firstLine + ", " + town + ", " + countyState + ", " + postcode + ", " + country;
 	}
 	
 	// Setters

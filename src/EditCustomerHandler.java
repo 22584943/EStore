@@ -36,6 +36,7 @@ public class EditCustomerHandler implements HttpHandler{
         if (isLoggedIn) {
             try {
                 Customer customer = cd.getCustomerByID(id);
+                Address cAddress = customer.getAddress();
                 out.write(
                         getHeader.get() +
                                 "<h1>Edit Customer:" + id +"</h1>"
@@ -55,8 +56,28 @@ public class EditCustomerHandler implements HttpHandler{
                                     "<input name=\"name\" type=\"text\" value=\""+ customer.getName()  +"\" />" +
                                 "</div>" +
                                 "<div class=\"form-row\">" +
-                                    "<label>Address</label>" +
-                                    "<input name=\"address\"type=\"text\" value=\""+ customer.getAddress()  +"\" />" +
+                                    "<label>House Number</label>" +
+                                    "<input name=\"houseNumber\"type=\"text\" value=\""+ cAddress.getHouseNumber()  +"\" />" +
+                                "</div>" +
+                                "<div class=\"form-row\">" +
+                                "<label>First Line of Address</label>" +
+                                "<input name=\"firstLine\"type=\"text\" value=\""+ cAddress.getFirstLine()  +"\" />" +
+                                "</div>" +
+                                "<div class=\"form-row\">" +
+                                "<label>Town/City</label>" +
+                                "<input name=\"town\"type=\"text\" value=\""+ cAddress.getTown()  +"\" />" +
+                                "</div>" +
+                                "<div class=\"form-row\">" +
+                                "<label>Postcode</label>" +
+                                "<input name=\"postcode\"type=\"text\" value=\""+ cAddress.getPostcode()  +"\" />" +
+                                "</div>" +
+                                "<div class=\"form-row\">" +
+                                "<label>County/State</label>" +
+                                "<input name=\"countyState\"type=\"text\" value=\""+ cAddress.getCountyState()  +"\" />" +
+                                "</div>" +
+                                "<div class=\"form-row\">" +
+                                "<label>Country</label>" +
+                                "<input name=\"country\"type=\"text\" value=\""+ cAddress.getCountry()  +"\" />" +
                                 "</div>" +
                                 "<div class=\"form-row\">" +
                                     "<label>Email</label>" +

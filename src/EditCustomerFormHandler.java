@@ -42,9 +42,17 @@ public class EditCustomerFormHandler implements HttpHandler{
 
         int id = Integer.parseInt(postData.get("id"));
         String name = postData.get("name");
-        String address = postData.get("address");
         String email = postData.get("email");
         String telephone = postData.get("telephone");
+        String houseNumber = postData.get("houseNumber");
+        String firstLine = postData.get("firstLine");
+        String town = postData.get("town");
+        String countyState = postData.get("countyState");
+        String postcode = postData.get("postcode");
+        String country = postData.get("country");
+        // Create address
+        Address address = new Address(houseNumber, firstLine, town, countyState, postcode, country );
+
 
         Customer updatedCustomer = new Customer(id, name, address, email, telephone);
         try {

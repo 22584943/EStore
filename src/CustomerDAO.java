@@ -44,10 +44,12 @@ public class CustomerDAO {
 				int id = result.getInt("id");
 				String name = result.getString("name");
 				String address =result.getString("address");
+				String[] addressSplit = address.split(",");
+				Address objAddress = new Address(addressSplit[0],addressSplit[1],addressSplit[2],addressSplit[3],addressSplit[4],addressSplit[5]);
 				String email = result.getString("email");
 				String telephone = result.getString("telephone");
 				
-				customers.add(new Customer(id,name, address, email, telephone));
+				customers.add(new Customer(id,name, objAddress, email, telephone));
 			}
 		} catch(Exception e) {
 			System.out.println("get all dvds: "+e);
@@ -88,10 +90,11 @@ public class CustomerDAO {
 				String name = result.getString("name");
 				String address = result.getString("address");
 				String email = result.getString("email");
-
+				String[] addressSplit = address.split(",");
+				Address objAddress = new Address(addressSplit[0],addressSplit[1],addressSplit[2],addressSplit[3],addressSplit[4],addressSplit[5]);
 				String telephone = result.getString("telephone");
 
-				temp = new Customer(id,name, address, email, telephone);
+				temp = new Customer(id,name, objAddress, email, telephone);
 
 			}
 		} finally {

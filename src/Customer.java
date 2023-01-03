@@ -6,7 +6,7 @@ import java.util.Random;
 public class Customer {
 	private int id;
 	private String name;
-	private String address;
+	private Address address;
 	private String email;
 	private String telephone;
 //	private static ArrayList<Customer> customers;
@@ -28,7 +28,7 @@ public class Customer {
 	}
 	
 	
-	public Customer(String name, String address, String email, String telephone, ArrayList<Customer> customers) {
+	public Customer(String name, Address address, String email, String telephone, ArrayList<Customer> customers) {
 
 			this.id = getNewCustomerID(customers);
 			this.name = name;
@@ -38,7 +38,7 @@ public class Customer {
 	//		Customer.customers = customers;
 		}
 
-	public Customer(String name, String address, String email, String telephone ) {
+	public Customer(String name, Address address, String email, String telephone ) {
 
 		this.name = name;
 		this.address = address;
@@ -46,7 +46,7 @@ public class Customer {
 		this.telephone = telephone;
 		//		Customer.customers = customers;
 	}
-	public Customer(int id, String name, String address, String email, String telephone) {
+	public Customer(int id, String name, Address address, String email, String telephone) {
 
 		this.id = id;
 		this.name = name;
@@ -65,7 +65,7 @@ public class Customer {
 	public String getName() {
 		return this.name;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return this.address;
 	}
 	public String getEmail() {

@@ -43,8 +43,10 @@ public class AddCustomerFormHandler implements HttpHandler{
         String email = postData.get("email");
         String telephone = postData.get("telephone");
         String address = postData.get("address");
+        String[] addressSplit = address.split(",");
+        Address objAddress = new Address(addressSplit[0],addressSplit[1],addressSplit[2],addressSplit[3],addressSplit[4],addressSplit[5]);
 
-        Customer newCustomer = new Customer(name, address, email, telephone);
+        Customer newCustomer = new Customer(name, objAddress, email, telephone);
         try {
             // verify user
             boolean addCustomerSuccess = customerDAO.addCustomer(newCustomer); // add to database
