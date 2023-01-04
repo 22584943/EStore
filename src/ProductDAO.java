@@ -255,10 +255,11 @@ System.out.println(query);
 			try {
 					dbConnection = getDBConnection();
 					statement = dbConnection.createStatement();
-					System.out.println(update);
+
 		// execute SQL query
 					statement.executeUpdate(update);
 					ok = true;
+					System.out.println("Product created successfully");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				} finally {
