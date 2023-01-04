@@ -11,7 +11,7 @@ public class Controller {
 	private static String inputDescription;
 	private static int inputPrice;
 	private static ArrayList<Product> products = new ArrayList<Product>(Arrays.asList());
-	private static ArrayList<Product> sortedProducts= new ArrayList<>(Arrays.asList());
+
 	private static ArrayList<String> categories = new ArrayList<String>(Arrays.asList());
 	private static ArrayList<Customer> customers = new ArrayList<Customer>(Arrays.asList());
 	static Random r = new Random();
@@ -51,7 +51,7 @@ public class Controller {
 				 break;
 				 
 			 case "4":
-				 deleteProductBySKU();
+				 deleteProductByID();
 				 break;
 				 
 			 case "5":
@@ -151,7 +151,7 @@ public class Controller {
 		
 		int inputCategoryIndex = in.nextInt();
 		
-		// filter product matching selected category
+		// filter product matching selected category by index
 		for (Product product : products) {
 			if (product.getCategory().equals(categories.get(inputCategoryIndex))) {
 				categoryItems.add(product);
@@ -359,8 +359,16 @@ public class Controller {
 	}
 	
 	static public void sortProducts(String sortType, String sortDirection) {
-		System.out.println("sort price ascending");
-		// create deep copy of array for sorting
+		System.out.println("sort " + sortType + " " + sortDirection);
+		ProductDAO productDAO = new ProductDAO();
+		ArrayList<Product> products = new ArrayList<Product>(Arrays.asList());
+		try {
+			products = productDAO.getProducts();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+				// create deep copy of array for sorting
 		
 		// implement bubble sort
 		// The inner loop checks adjacent elements in the array, looking for 
@@ -368,28 +376,30 @@ public class Controller {
 		// the two elements are exchanged. With each pass, the smallest of the 
 		// remaining elements moves into its proper location. The outer loop causes 
 		// this process to repeat until the entire array has been sorted
-		
+
+
+
 		// loop through each product
+
 		
-		
-		for(int i=1; i < sortedProducts.size(); i++){  
+		for(int i=1; i < products.size(); i++){
 			// compare each product to all the others
-             for(int j=sortedProducts.size()-1; j >= i; j--){  
+             for(int j=products.size()-1; j >= i; j--){
             	 if (sortType == "price") {
 	            	 if (sortDirection == "ascending") {
-	                      if(sortedProducts.get(j-1).getPrice() > sortedProducts.get(j).getPrice()){  
+	                      if(products.get(j-1).getPrice() > products.get(j).getPrice()){
 	                             //swap elements  
-	                             Product temp = sortedProducts.get(j-1);  
-	                             sortedProducts.set(j-1, sortedProducts.get(j));  
-	                             sortedProducts.set(j, temp);  
+	                             Product temp = products.get(j-1);
+	                             products.set(j-1, products.get(j));
+	                             products.set(j, temp);
 		                     }  
 		                      
 		             } else {
-		            	 if(sortedProducts.get(j-1).getPrice() < sortedProducts.get(j).getPrice()){  
+		            	 if(products.get(j-1).getPrice() < products.get(j).getPrice()){
 	                         //swap elements  
-	                         Product temp = sortedProducts.get(j-1);  
-	                         sortedProducts.set(j-1, sortedProducts.get(j));  
-	                         sortedProducts.set(j, temp);  
+	                         Product temp = products.get(j-1);
+	                         products.set(j-1, products.get(j));
+	                         products.set(j, temp);
 	                     }  
 		             }
 	             } else if (sortType =="name") {
@@ -397,15 +407,15 @@ public class Controller {
 		            	 System.out.println("sort item alphabetically ascending");
 							
 							// loop through each product
-							for(int a=1; a < sortedProducts.size(); a++){  
+							for(int a=1; a < products.size(); a++){
 								// compare each product to all the others
-				                 for(int b=sortedProducts.size()-1; b >= a; b--){  
+				                 for(int b=products.size()-1; b >= a; b--){
 				               
-				                          if(sortedProducts.get(b-1).getName().toLowerCase().compareTo(sortedProducts.get(b).getName().toLowerCase()) > 0){  
+				                          if(products.get(b-1).getName().toLowerCase().compareTo(products.get(b).getName().toLowerCase()) > 0){
 				                                 //swap elements  
-				                                 Product temp = sortedProducts.get(b-1);  
-				                                 sortedProducts.set(b-1, sortedProducts.get(b));  
-				                                 sortedProducts.set(b, temp);  
+				                                 Product temp = products.get(b-1);
+				                                 products.set(b-1, products.get(b));
+				                                 products.set(b, temp);
 				                         }  
 				                          
 				                 }  
@@ -414,15 +424,15 @@ public class Controller {
 	            	 
 	            		System.out.println("sort by item alphabetically descending ");
 	 					// loop through each product
-	 					for(int a=1; a < sortedProducts.size(); a++){  
+	 					for(int a=1; a < products.size(); a++){
 	 						// compare each product to all the others
-	 		                 for(int b=sortedProducts.size()-1; b >= a; b--){  
+	 		                 for(int b=products.size()-1; b >= a; b--){
 	 		                
-	 		                          if(sortedProducts.get(b-1).getName().toLowerCase().compareTo(sortedProducts.get(b).getName().toLowerCase()) < 0){  
+	 		                          if(products.get(b-1).getName().toLowerCase().compareTo(products.get(b).getName().toLowerCase()) < 0){
 	 		                                 //swap elements  
-	 		                                 Product temp = sortedProducts.get(b-1);  
-	 		                                 sortedProducts.set(b-1, sortedProducts.get(b));  
-	 		                                 sortedProducts.set(b, temp);  
+	 		                                 Product temp = products.get(b-1);
+	 		                                 products.set(b-1, products.get(b));
+	 		                                 products.set(b, temp);
 	 		                         }  
 	 		                          
 	 		                 }  
@@ -437,26 +447,40 @@ public class Controller {
 		}
 	
 		// Print out products
-		for (int i=0; i<sortedProducts.size(); i++) {
-			System.out.println(sortedProducts.get(i));
+		for (int i=0; i<products.size(); i++) {
+			System.out.println(products.get(i));
 		}
 	}
 	
-	static public void deleteProductBySKU() {
-		System.out.println("Enter an SKU to delete product: ");
-		 String SKUToDelete = in.nextLine();
-		 int totalProducts = products.size();
+	static public void deleteProductByID() {
+		ProductDAO productDAO = new ProductDAO();
+		System.out.println("Enter an ID to delete product: ");
+		 int IDToDelete = in.nextInt();
+
+		 boolean deleteSuccess;
+		try {
+			deleteSuccess = productDAO.deleteProduct(IDToDelete);
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 		 // remove matching product
-		 products.removeIf(item -> item.getSKU().equals(UUID.fromString(SKUToDelete)));
+
 		 
-		 if (products.size() < totalProducts) {
+		 if (deleteSuccess) {
 			 // if product removed, print updated store
-			 System.out.println("UPDATED STORE");
-			 for (Product product : products) {
-					 System.out.println(product.toString());
-			}
+			 System.out.println("Product [ID=" + IDToDelete +"] deleted");
+			 try {
+				 products = productDAO.getProducts();
+				 System.out.println("UPDATED PRODUCT LIST:");
+				for (Product product : products) {
+					System.out.println(product);
+				}
+			 } catch (SQLException e) {
+				 throw new RuntimeException(e);
+			 }
 		 } else {
-			 System.out.println("Product not found");
+			 System.out.println("Error. Product may not exist");
 		 }
 		 
 	}
