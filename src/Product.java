@@ -116,7 +116,7 @@ public class Product {
 	// toString
 
 	public String toString() {
-		return "SKU: " + SKU + ", CATEGORY: " + category + " , NAME: " + name + ", DESCRIPTION: " + description + ", PRICE: " + price;
+		return "id: " + id + ", SKU: " + SKU + ", CATEGORY: " + category + " , NAME: " + name + ", DESCRIPTION: " + description + ", PRICE: " + price + ", STOCK:" + stock;
 	}
 	
 	
