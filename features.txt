@@ -3,17 +3,25 @@ Secure sending of form data using post rather than get - used utility to grab po
 Authentication and password hashing using BCrypt (more secure than MD5 - found good utility code)
 partial search matching products
 project backed up with git
-check if order can be fulfilled, i.e.stock greater > 0, returns error message obj if not - expanded on return boolean success into response object with multiple fields
+check if order can be fulfilled, i.e.stock greater > 0, returns error message obj if not - expanded on return boolean success into response object with multiple fields more detailed info to be sent when interacting with db
 if item already in basket, update total instead of creating duplicates
 create basket table, to keep hold of basket
+customer class to do - get back from db, split by "," DONE
+console app dynamic get category
+
 TODO:
 
-
+hoist product/customer DAO to top of class, save repeating it in various methods
+defensived programming - fix user input errors on console app
+ensure when adding product that SKU must be unique
 Add images
 prettify with icons
 refactor code!
+unit testing!
+test console app thorougly - sort price asc/des not working
 reorganise file structure
-customer class to do - get back from db, split by "," put into hashmap
+
+automate the SKU with first two letters of category and number counting from 1000? - not too important
 
 
 delete item from basket
