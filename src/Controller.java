@@ -39,6 +39,7 @@ public class Controller {
 				case "5": showCategoryMenu(); break;	
 				case "6":break;
 				}
+
 				break;
 			
 	
@@ -165,18 +166,26 @@ public class Controller {
 		}
 	}
 	static public void populateProducts() {
-		
-		// POPULATE MOCK PRODUCTS
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "fish", "tuna", "massive fish from atlantic", 50));
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "fish", "salmon", "big fish from North Sea",20));
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "cereal", "Coco Pops","tiny fish from atlantic", 5));
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "fish", "mackerel", "small fish from atlantic",10));
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "cereal", "Frosties", "tropical fish",100));
-//		 products.add(new Product(new UUID(r.nextLong(), r.nextLong()), 100, "fish", "cod", "white fish from atlantic",70));
+		ProductDAO productDAO = new ProductDAO();
+		try {
+			products = productDAO.getProducts();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+
 	}
 	
 	static public void populateCustomers() {
-		 
+		CustomerDAO customerDAO = new CustomerDAO();
+		try {
+			customers = customerDAO.getAllCustomers();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 //		customers.add(new Customer("Harry Styles", new Address("108", "Styles Mansion", "Hollywood", "California", "HL 4738", "USA"), "harry@mail.com", "064387477", customers));
 //		customers.add(new Customer("Eric Cantona", new Address("288", "France Street", "London", "Greater London", "NH4 S83", "UK"), "eric@mail.com", "087776345", customers));
 //		customers.add(new Customer("Fred East", new Address("12", "Church Street", "Stockport", "Cheshire", "SK8 6HF", "UK"), "fred@mail.com", "0543789345", customers));
@@ -232,6 +241,8 @@ public class Controller {
 		checkIfProductUnique(inputName, inputDescription, products);
 		System.out.println("\nEnter product price");
 		inputPrice = in.nextInt();
+		// read next line to avoid bug where nextInt causes menu to print unnecessarily
+		in.nextLine();
 			 
 
 		// Create new product, add to db
@@ -456,7 +467,8 @@ public class Controller {
 		ProductDAO productDAO = new ProductDAO();
 		System.out.println("Enter an ID to delete product: ");
 		 int IDToDelete = in.nextInt();
-
+		// read next line to avoid bug where nextInt causes menu to print unnecessarily
+		in.nextLine();
 		 boolean deleteSuccess;
 		try {
 			deleteSuccess = productDAO.deleteProduct(IDToDelete);
