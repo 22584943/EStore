@@ -36,21 +36,34 @@ public class ProductHandler implements HttpHandler{
             String autoCompleteScript = "const searchInput = document.getElementById(\"searchInput\");\n" +
                     "\n" +
                     "const dropdownCont = document.getElementsByClassName(\"dropdown-cont\")[0]\n" +
-                    "const dropdownResults = document.getElementsByClassName(\"dropdown-results\")[0]\n" +
+                    "const dropdownResults = document.getElementById(\"dropdown-results\")\n" +
+                    "let searchType = document.getElementById(\"searchType\").value\n" +
                     "\n" +
-                    "let searchResults = '" + collJSON + "'" + "\n"+
-                    "searchResults = searchResults.substring(0, searchResults.length - 2)" + "\n" +
-                    "searchResults = \"[\" + searchResults + \"]\"" + "\n" +
-                    "console.log(JSON.parse(searchResults))\n" +
-//                    "searchResults = searchResults.replace('[','');"+
-//                    "searchResults = searchResults.replace(']','');"+
-//                    "console.log(searchResults)\n" +
-//                    "searchResults = searchResults.split(\"}, \")\n" +
-//                    "console.log(searchResults)\n" +
+                    "let matchedResults = []" + "\n" +
+                    "let searchResultsData = '" + collJSON + "'" + "\n"+
+                    "let searchResultsArr = []" + "\n"+
+                    "searchResultsData = searchResultsData.substring(0, searchResultsData.length - 2)" + "\n" +
+                    "searchResultsData = \"[\" + searchResultsData + \"]\"" + "\n" +
+                    "searchResultsArr = JSON.parse(searchResultsData)\n" +
+                    "console.log(searchResultsArr)" +
+//
                     "\n" +
                     "searchInput.addEventListener(\"input\", (e)=> {\n" +
-                    "    console.log(e.target.value)\n" +
-                    "})";
+                    "    searchType = document.getElementById(\"searchType\").value\n" +
+                    "    let inputText = e.target.value\n" +
+                    "    console.log(searchType)\n" +
+                    "    for (let i=0; i<searchResultsArr.length; i++) {\n" +
+                    "        if (searchResultsArr[i][searchType].includes(inputText)) {\n" +
+                    "            matchedResults.push(searchResultsArr[i])" +
+                    "        }\n" +
+                    "    }\n" +
+                    "\n" +
+                    "    for (let i=0; i<matchedResults.length; i++) {\n" +
+                    "            dropdownResults.innerHTML += `<li><a href=\"/product?id=${matchedResults[i][\"id\"]}\">${matchedResults[i][searchType]}</a></li>`\n" +
+
+                    "    }\n" +
+                    "})"
+                    ;
 //            "let searchResults = \"" + coll + "\"\n" +
             ArrayList<String> categories = products.getCategories();
             out.write(
@@ -58,7 +71,7 @@ public class ProductHandler implements HttpHandler{
                             "<div class=\"wrapper\">" +
                             "<h2>Product Listings</h2>" +
                             "<form class=\"search-form\" action=\"products\\product-search\" method=\"get\">\n" +
-                            "            <select name=\"searchType\">\n" +
+                            "            <select id=\"searchType\" name=\"searchType\">\n" +
                             "                <option value=\"id\">id</option>\n" +
                             "                <option value=\"SKU\">SKU</option>\n" +
                             "                <option value=\"name\">name</option>\n" +

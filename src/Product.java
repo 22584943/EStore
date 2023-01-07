@@ -120,7 +120,7 @@ public class Product {
 	}
 
 	public String toJSON() {
-		return "{\"id\" :\"" + id +"\", \"SKU\": \"" + SKU + "\", \"CATEGORY\": \"" + category + "\", \"NAME\": \"" + name + "\", \"DESCRIPTION\": \"" + description + "\", \"PRICE\": \"" + price + "\", \"STOCK\":\"" + stock + "\"}";
+		return "{\"id\" :\"" + id +"\", \"sku\": \"" + SKU + "\", \"category\": \"" + category + "\", \"name\": \"" + name + "\", \"description\": \"" + description + "\", \"price\": \"" + price + "\", \"stock\":\"" + stock + "\"}";
 	}
 	
 	
