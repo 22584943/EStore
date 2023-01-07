@@ -7,12 +7,12 @@ public class Product {
  private String name;
  private String description;
  private String category;
- private int price;
+ private double price;
 
  private int quantityOrdered;
 
 
-	public Product(int id, String SKU, String category, String name, String description, int price, int stock) {
+	public Product(int id, String SKU, String category, String name, String description, double price, int stock) {
 		this.id = id;
 		this.SKU = SKU;
 		this.name = name;
@@ -23,7 +23,7 @@ public class Product {
 	}
 
 	//override for creating product instance before it exists in db where it gets given id
-	public Product(String SKU, String category, String name, String description, int price, int stock) {
+	public Product(String SKU, String category, String name, String description, double price, int stock) {
 
 		this.SKU = SKU;
 		this.name = name;
@@ -33,7 +33,7 @@ public class Product {
 		this.stock = stock;
 	}
 	// override for basket product to show
-	public Product(int id, int quantity, String SKU, String category, String name, String description, int price, int currentStock) {
+	public Product(int id, int quantity, String SKU, String category, String name, String description, double price, int currentStock) {
 		this.id = id;
 		this.SKU = SKU;
 		this.name = name;
@@ -77,7 +77,7 @@ public class Product {
 		return category;
 	}
 	
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
