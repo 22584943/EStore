@@ -225,26 +225,98 @@ public class Controller {
 	}
 	
 	static public void addNewProduct() {
-		 System.out.println("\nEnter product SKU");
-		 inputSKU = in.nextLine();
-		 System.out.println("\nEnter product category");
-		 inputCategory = in.nextLine();
-		 System.out.println("\nEnter initialStock");
-		 inputStock = in.nextInt();
-		 // do next line to avoid skipping line bug
-		 in.nextLine();
-		 System.out.println("\nEnter product name");
-		 inputName = in.nextLine();
-		 System.out.println("\nEnter product description");
-		 inputDescription = in.nextLine();
+		boolean validSKU = false;
+		boolean validCategory = false;
+		boolean validName = false;
+		boolean validDescription = false;
+		boolean validStock = false;
+		boolean validPrice = false;
+		while (!validSKU) {
+			System.out.println("\nEnter product SKU");
+			inputSKU = in.nextLine();
+			if (inputSKU.length()>=4) {
+				validSKU = true;
+			} else {
+				System.out.println("\nError. Please enter a valid SKU of at least 4 characters");
+			}
+		}
+
+
+		while (!validCategory) {
+			System.out.println("\nEnter product category");
+			inputCategory = in.nextLine();
+			if (inputCategory.length()>=4) {
+				validCategory = true;
+			} else {
+				System.out.println("\nError. Please enter a valid category of at least 4 characters");
+			}
+		}
+
+		while (!validName) {
+			System.out.println("\nEnter product name");
+			inputName = in.nextLine();
+			if (inputName.length()>=4) {
+				validName = true;
+			} else {
+				System.out.println("\nError. Please enter a valid product name of at least 4 characters");
+			}
+		}
+
+		while (!validDescription) {
+			System.out.println("\nEnter product description");
+			inputDescription = in.nextLine();
+			if (inputDescription.length()>=10) {
+				validDescription = true;
+			} else {
+				System.out.println("\nError. Please enter a valid product description of at least 10 characters");
+			}
+		}
+		while (!validStock) {
+			System.out.println("\nEnter product stock");
+			try {
+				inputStock = in.nextInt();
+			} catch (Exception e)
+			{
+				// if error, set value to -1, to avoid string input bug whereby value set to 0
+				inputStock = -1;
+				System.out.println("Invalid input, please try again");
+
+			}
+			if (inputStock >= 0) {
+				validStock = true;
+				// do next line to avoid skipping line bug
+				in.nextLine();
+			} else {
+				System.out.println("\nError. Please enter a valid stock number");
+				in.nextLine();
+			}
+		}
+
+
+		while (!validPrice) {
+			System.out.println("\nEnter product price");
+			try {
+				inputPrice = in.nextInt();
+			} catch (Exception e)
+			{
+				// if error, set value to -1, to avoid string input bug whereby value set to 0
+				inputPrice = -1;
+				System.out.println("Invalid input, please try again");
+
+			}
+			if (inputPrice >= 0) {
+				validPrice = true;
+				// do next line to avoid skipping line bug
+				in.nextLine();
+			} else {
+				System.out.println("\nError. Please enter a valid decimal price");
+				in.nextLine();
+			}
+		}
+
+
 		//TODO make checkIfProductExists more robust - check item name and description
 		checkIfProductUnique(inputName, inputDescription, products);
-		System.out.println("\nEnter product price");
-		inputPrice = in.nextInt();
-		// read next line to avoid bug where nextInt causes menu to print unnecessarily
-		in.nextLine();
-			 
-
 		// Create new product, add to db
 		Product newProduct = new Product(inputSKU,inputCategory, inputName, inputDescription, inputPrice, inputStock);
 		try {
