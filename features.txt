@@ -3,6 +3,7 @@ Secure sending of form data using post rather than get - used utility to grab po
 Authentication and password hashing using BCrypt (more secure than MD5 - found good utility code)
 partial search matching products
 project backed up with git
+total cost on checkout screen - formatted prices to same x.xx format
 check if order can be fulfilled, i.e.stock greater > 0, returns error message obj if not - expanded on return boolean success into response object with multiple fields more detailed info to be sent when interacting with db
 if item already in basket, update total instead of creating duplicates
 create basket table, to keep hold of basket
@@ -12,7 +13,7 @@ console app dynamic get category
 TODO:
 
 hoist product/customer DAO to top of class, save repeating it in various methods
-defensived programming - fix user input errors on console app
+defensived programming - fix user input errors on console app - added required to html forms,
 ensure when adding product that SKU must be unique
 Add images
 prettify with icons
