@@ -39,27 +39,28 @@ public class AddProductHandler implements HttpHandler{
                     "<form class=\"edit-product-form\" action=\"add-product-handler\" method=\"post\">" +
                             "<div class=\"form-row\">" +
                             "<label>SKU</div>" +
-                            "<input name=\"SKU\" type=\"text\" />" +
+                            "<input required name=\"SKU\" type=\"text\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<label>Category</label>" +
-                            "<input name=\"category\"type=\"text\" />" +
+                            "<input required name=\"category\"type=\"text\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<label>Product Name</label>" +
-                            "<input name=\"name\" type=\"text\" />" +
+                            "<input required name=\"name\" type=\"text\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<label>Description</label>" +
-                            "<input name=\"description\" type=\"text\" />" +
+                            "<input required name=\"description\" type=\"text\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<label>Price</label>" +
-                            "<input name=\"price\"type=\"number\"  />" +
+                            // add step="any" to allow decimal values
+                            "<input required name=\"price\"type=\"number\" step=\"any\" min=\"0\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<label>Stock</label>" +
-                            "<input name=\"stock\" type=\"number\"  />" +
+                            "<input required name=\"stock\" type=\"number\" min=\"0\" />" +
                             "</div>" +
                             "<div class=\"form-row\">" +
                             "<button type=\"submit\">Add Product</button>" +
