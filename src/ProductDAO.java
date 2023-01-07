@@ -46,7 +46,7 @@ public class ProductDAO {
 				String category = result.getString("category");
 				String name = result.getString("name");
 				String description = result.getString("description");
-				int price = result.getInt("price");
+				double price = result.getDouble("price");
 				int stock = result.getInt("stock");
 				products.add(new Product(id, SKU, category, name, description, price, stock));
 			}
@@ -85,7 +85,7 @@ public class ProductDAO {
 				String category = result.getString("category");
 				String name = result.getString("name");
 				String description = result.getString("description");
-				int price = result.getInt("price");
+				double price = result.getDouble("price");
 				int stock = result.getInt("stock");
 				products.add(new Product(id, SKU, category, name, description, price, stock));
 			}
@@ -129,7 +129,7 @@ public class ProductDAO {
 				String category = result.getString("category");
 				String name = result.getString("name");
 				String description = result.getString("description");
-				int price = result.getInt("price");
+				double price = result.getDouble("price");
         		int stock = result.getInt("stock");
 
 				temp = new Product(id,SKU, category, name, description, price, stock);
@@ -262,6 +262,7 @@ System.out.println(query);
 					System.out.println("Product created successfully");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
+					ok = false;
 				} finally {
 					if (statement != null) {
 						statement.close();
