@@ -43,7 +43,7 @@ public class AddProductFormHandler implements HttpHandler{
         String category = postData.get("category");
         String name = postData.get("name");
         String description = postData.get("description");
-        int price = Integer.parseInt(postData.get("price"));
+        double price = Double.parseDouble(postData.get("price"));
         int stock = Integer.parseInt(postData.get("stock"));
 
         Product updatedProduct = new Product(SKU, category, name, description, price, stock);
