@@ -58,7 +58,7 @@ public class AddProductFormHandler implements HttpHandler{
                             "<body>" +
                             "<div class=\"flex-center flex-down\">" +
                             "<h1>" + outputMessage + "</h1>" +
-
+                            "<a href=\"/products\">Back to products</a>" +
                             "</div>" +
                             "</body>" +
                             "</html>"
