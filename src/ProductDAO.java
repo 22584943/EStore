@@ -66,6 +66,47 @@ public class ProductDAO {
 		return products;
 	}
 
+	public String getProductsJSON() throws SQLException {
+		System.out.println("Retrieving JSON...");
+		Connection dbConnection = null;
+		Statement statement = null;
+		ResultSet result = null;
+		String query = "SELECT * FROM products;";
+		StringBuilder productsJSONString = new StringBuilder();
+
+		try {
+			dbConnection = getDBConnection();
+			statement = dbConnection.createStatement();
+			//System.out.println("DBQuery = " + query);
+			result = statement.executeQuery(query); // Execute SQL query and record response to string
+			while (result.next()) {
+				int id = result.getInt("id");
+				String SKU = result.getString("SKU");
+				String category = result.getString("category");
+				String name = result.getString("name");
+				String description = result.getString("description");
+				double price = result.getDouble("price");
+				int stock = result.getInt("stock");
+				Product product = new Product(id, SKU, category, name, description, price, stock);
+				productsJSONString.append(product.toJSON());
+				productsJSONString.append(", ");
+			}
+		} catch(Exception e) {
+			System.out.println("get all dvds: "+e);
+		} finally {
+			if (result != null) {
+				result.close();
+			}
+			if (statement != null) {
+				statement.close();
+			}
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		return productsJSONString.toString();
+	}
+
 	public ArrayList<Product> searchProducts(String searchType, String searchQuery) throws SQLException {
 		System.out.println("Retrieving queried products ...");
 		Connection dbConnection = null;

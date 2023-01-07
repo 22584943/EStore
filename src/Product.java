@@ -116,7 +116,11 @@ public class Product {
 	// toString
 
 	public String toString() {
-		return "id: " + id + ", SKU: " + SKU + ", CATEGORY: " + category + " , NAME: " + name + ", DESCRIPTION: " + description + ", PRICE: " + price + ", STOCK:" + stock;
+		return "{id: " + id + ", SKU: " + SKU + ", CATEGORY: " + category + " , NAME: " + name + ", DESCRIPTION: " + description + ", PRICE: " + price + ", STOCK:" + stock + "}";
+	}
+
+	public String toJSON() {
+		return "{\"id\" :\"" + id +"\", \"SKU\": \"" + SKU + "\", \"CATEGORY\": \"" + category + "\", \"NAME\": \"" + name + "\", \"DESCRIPTION\": \"" + description + "\", \"PRICE\": \"" + price + "\", \"STOCK\":\"" + stock + "\"}";
 	}
 	
 	
