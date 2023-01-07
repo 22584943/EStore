@@ -75,8 +75,8 @@ public class ProductHandler implements HttpHandler{
             for (Product p: coll) {
                 DecimalFormat formatter = new DecimalFormat("0.00");
 
-                double fPrice = (double)p.getPrice()/100;
-                String formattedPrice = formatter.format(fPrice);
+                System.out.println(p.getName() + ", " + p.getPrice());
+                String formattedPrice = formatter.format(p.getPrice());
                 // Keep add/delete in conditional cell-col render, to maintain table styling
                 String showEditOrAddBtn = isLoggedIn ? "<span class=\"cell-col edit-btn-cell\"><a class=\"flex\" href=\"/products/edit?id=" + p.getID() +"\"><i class=\"bi bi-pencil-square\"></i><span>Edit</span></a><a class=\"flex\" href=\"/products/delete?id=" + p.getID() +"\"/><i class=\"bi bi-trash-fill\"></i></i><span>Delete</span></a>" : "<span class=\"product-basket-cell cell-cont\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form></span>";
 
