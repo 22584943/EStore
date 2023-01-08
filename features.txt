@@ -9,13 +9,13 @@ if item already in basket, update total instead of creating duplicates
 create basket table, to keep hold of basket
 customer class to do - get back from db, split by "," DONE
 console app dynamic get category
-
+cound have had basket for each customer, however would need to expand database with weak entities, beyond scope of this project
 TODO:
-
+change db structure - put user password in customer table, add customer data inputs to register form, keep separate admin table, add admin tab to login
 hoist product/customer DAO to top of class, save repeating it in various methods
-defensived programming - fix user input errors on console app - added required to html forms,
+defensived programming - fix user input errors on console app - added required to html forms DONE, add product DONE, add Customers TODO
 ensure when adding product that SKU must be unique
-Add images
+Add images - https://stackoverflow.com/questions/2422468/how-can-i-upload-files-to-a-server-using-jsp-servlet/2424824#2424824
 prettify with icons
 refactor code!
 unit testing!
