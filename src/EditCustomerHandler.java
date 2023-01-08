@@ -20,7 +20,7 @@ public class EditCustomerHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
 
         CustomerDAO cd = new CustomerDAO();
         // Get param from URL
@@ -33,7 +33,7 @@ public class EditCustomerHandler implements HttpHandler{
 
 
         // Authorised Access
-        if (isLoggedIn) {
+        if (isAdminLoggedIn) {
             try {
                 Customer customer = cd.getCustomerByID(id);
                 Address cAddress = customer.getAddress();
