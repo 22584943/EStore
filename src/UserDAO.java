@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 
 public class UserDAO {
-    private static boolean loggedIn = false;
+    private static boolean isAdminloggedIn = false;
+    private static boolean isCustomerLoggedIn = false;
     public UserDAO() {}
 
     private static Connection getDBConnection() {
@@ -32,7 +33,7 @@ public class UserDAO {
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM users;";
+        String query = "SELECT * FROM admins;";
         ArrayList<User> users = new ArrayList<>();
 
         try {
@@ -62,11 +63,11 @@ public class UserDAO {
         return users;
     }
 
-    public static boolean addUser(User in) throws SQLException{
+    public static boolean addAdmin(User in) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
 
-        String update = "INSERT INTO users (username, password) VALUES ('"+in.getUsername()+"','"+in.getPassword()+"');";
+        String update = "INSERT INTO admins (username, password) VALUES ('"+in.getUsername()+"','"+in.getPassword()+"');";
         boolean ok = false;
         try {
             dbConnection = getDBConnection();
@@ -89,26 +90,65 @@ public class UserDAO {
         return ok;
     }
 
+    public static boolean addCustomer(Customer c) throws SQLException{
+        Connection dbConnection = null;
+        Statement statement = null;
+
+        String addressToString = c.getAddress().toString();
+        String update = "INSERT INTO customers (name, address, email, telephone, password) VALUES ('"+c.getName()+"','"+addressToString+"','"+c.getEmail() + "','"+c.getTelephone() + "','"+c.getHashedPassword()+"');";
+        boolean ok = false;
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(update);
+            // execute SQL query
+            statement.executeUpdate(update);
+            ok = true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+
+        }
+        return ok;
+    }
     // Get user
 
-    public boolean isLoggedIn() {
+    public boolean isLoggedIn(String userType) {
+        if (userType.equals("Admin")) {
+            return isAdminloggedIn;
+        } else if (userType.equals("Customer")) {
+            return isCustomerLoggedIn;
+        } else {
+            return false;
+        }
 
-        return loggedIn;
     }
 
     // Verify User
 
     public void logout() {
-        this.loggedIn = false;
+        isAdminloggedIn = false;
+        isCustomerLoggedIn = false;
     }
 
-    public static String getStoredPassword(String username) throws SQLException{
+    public static String getStoredPassword(String username, String userType) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String storedPassword ="";
-        String query = "SELECT password FROM users WHERE username='" +username + "';";
+        String storedPassword =null;
 
+        String query = "";
+        if (userType.equals("Admin")) {
+            query = "SELECT password FROM admins WHERE username='" +username + "';";
+        } else if (userType.equals("Customer")) {
+            query = "SELECT password FROM customers WHERE email='" +username + "';";
+        }
         try {
             dbConnection = getDBConnection();
             statement = dbConnection.createStatement();
@@ -117,7 +157,6 @@ public class UserDAO {
             statement.executeUpdate(query);
             result = statement.executeQuery(query); // Execute SQL query and record response to string
             while (result.next()) {
-
                 storedPassword = result.getString("password");
 
             }
@@ -135,11 +174,18 @@ public class UserDAO {
         }
         return storedPassword;
     }
-    public static boolean verifyUserExists(String username) throws SQLException{
+    public static boolean verifyLogin(String username, String userType) throws SQLException{
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM users WHERE username='" +username + "';";
+        String query = "";
+
+        if (userType.equals("Admin")) {
+            query = "SELECT * FROM admins WHERE username='" +username + "';";
+        } else if (userType.equals("Customer")) {
+            query = "SELECT * FROM customers WHERE email='" +username + "';";
+        }
+
 
         try {
             dbConnection = getDBConnection();
@@ -149,8 +195,12 @@ public class UserDAO {
             statement.executeUpdate(query);
             result = statement.executeQuery(query); // Execute SQL query and record response to string
             while (result.next()) {
+                if (userType.equals("Admin")) {
+                    isAdminloggedIn = true;
+                } else if (userType.equals("Customer")) {
+                    isCustomerLoggedIn = true;
+                }
 
-                loggedIn = true;
             }
 
         } catch (SQLException e) {
@@ -164,7 +214,14 @@ public class UserDAO {
             }
 
         }
-        return loggedIn;
+        if (userType.equals("Admin")) {
+            return isAdminloggedIn;
+        } else if (userType.equals("Customer")) {
+            return isCustomerLoggedIn;
+        } else {
+            return false;
+        }
+
     }
 
 //	public DVD getDVD(int film_id) throws SQLException {
