@@ -1,4 +1,6 @@
 import com.sun.net.httpserver.HttpServer;
+import handlers.*;
+
 import java.net.InetSocketAddress;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,7 +35,7 @@ class Main {
         server.createContext("/basket/add", new AddBasketHandler() );
         server.createContext("/basket/remove", new DeleteBasketItemHandler() );
         server.createContext("/basket/empty", new EmptyBasketHandler() );
-        server.createContext("/basket/checkout", new CheckoutBasket() );
+        server.createContext("/basket/checkout", new CheckoutBasketHandler() );
         server.createContext("/login", new CustomerLoginHandler() );
         server.createContext("/logout", new LogoutHandler() );
         server.createContext("/admin-register-handler", new AdminRegisterFormHandler() );

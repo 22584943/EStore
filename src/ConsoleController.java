@@ -1,3 +1,8 @@
+import DAOs.CustomerDAO;
+import DAOs.ProductDAO;
+import models.Customer;
+import models.Product;
+
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -407,34 +412,6 @@ public class ConsoleController {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-
-
-
-
-		
-		
-		
-	
-		
-		//WORKING
-//		CustomerDAO customerDAO = new CustomerDAO();
-//	
-//		ArrayList<Customer> coll = new ArrayList<Customer>();
-//		
-//		
-//		//
-//		
-//		try {
-//    System.out.println("Print all Customers");
-//		coll = customerDAO.getAllCustomers();
-//		for(int i =0; i < coll.size() ; i++) {
-//			System.out.println(coll.get(i));
-//    }
-//
-//    
-//		}catch(Exception e) {
-//			System.out.print(e.getMessage());
-//			}
 
 	}
 	

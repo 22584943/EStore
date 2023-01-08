@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+        <style>
+            * {
+                font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+                padding: 0;
+                margin: 0;
+                text-decoration: none;
+            }
+            a {
+                color: inherit;
+            }
+            header h1 {
+                color: white;
+            }
+            header {
+                background: #000;
+                display: flex;
+                padding: 0.75em 3%;
+                justify-content: space-between;
+                align-items: center;
+                color: white;
+            }
+            header i {
+                padding: 0.15em 0.5em;
+                font-size: 1.5em;
+
+            }
+            header h1 {
+                line-height: 1.5em;
+            }
+            .logo-cont, i, nav > ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                font-size: 1.25em;
+
+            }
+
+            nav ul li {
+                padding: 0.5em;
+            }
+            nav ul li:hover {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a class="logo-cont" href="/">
+                <i class="bi bi-bag-check-fill"></i>
+                <h1>EverythingStore</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/customer">Customers</a></li>
+                    <li>Login</li>
+                </ul>
+            </nav>
+
+        </header>
+
+
+
+
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="home-tab">
+                <form action="/login-form-handler" type="post">
+                    <div class="form-row">
+                        <label for="login-username">Username</label>
+                        <input id="login-username" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="login-password">utils.Password</label>
+                        <input id="login-password" type="password" />
+                    </div>
+                    <div class="form-row">
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="profile" role="register" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="home-tab">
+                    <form action="/register-form-handler" type="post">
+                        <div class="form-row">
+                            <label for="reg-username">Username</label>
+                            <input id="reg-username" type="text" />
+                        </div>
+                        <div class="form-row">
+                            <label for="reg-password">utils.Password</label>
+                            <input id="reg-password" type="password" />
+                        </div>
+                        <div class="form-row">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <form action="product-search" method="get">
+            <select name="search-type">
+                <option value="id">id</option>
+                <option value="SKU">SKU</option>
+                <option value="name">name</option>
+                <option value="description">description</option>
+            </select>
+            <input name="query" type="text" />
+            <button class="search-form" type="submit">Search</button>
+        </form>
+    </body>
+</html>
+
+
