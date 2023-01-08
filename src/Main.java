@@ -19,6 +19,8 @@ class Main {
         server.createContext("/customers/add-customer-handler", new AddCustomerFormHandler() );
         server.createContext("/customers/delete", new DeleteCustomerHandler() );
         server.createContext("/customers/delete-customer-handler", new DeleteCustomerFormHandler() );
+        server.createContext("/admin", new AdminLoginHandler() );
+        server.createContext("/product", new ShowProductHandler() );
         server.createContext("/products", new ProductHandler() );
         server.createContext("/products/delete", new DeleteProductHandler() );
         server.createContext("/products/delete-product-handler", new DeleteProductFormHandler() );
@@ -29,12 +31,15 @@ class Main {
         server.createContext("/products/product-search", new ProductSearchResultsHandler() );
         server.createContext("/basket", new BasketHandler() );
         server.createContext("/basket/add", new AddBasketHandler() );
+        server.createContext("/basket/remove", new DeleteBasketItemHandler() );
         server.createContext("/basket/empty", new EmptyBasketHandler() );
         server.createContext("/basket/checkout", new CheckoutBasket() );
-        server.createContext("/login", new LoginHandler() );
+        server.createContext("/login", new CustomerLoginHandler() );
         server.createContext("/logout", new LogoutHandler() );
-        server.createContext("/register-form-handler", new RegisterFormHandler() );
-        server.createContext("/login-form-handler", new LoginFormHandler() );
+        server.createContext("/admin-register-handler", new AdminRegisterFormHandler() );
+        server.createContext("/customer-register-handler", new CustomerRegisterFormHandler() );
+        server.createContext("/admin-login-handler", new AdminLoginFormHandler() );
+        server.createContext("/customer-login-handler", new CustomerLoginFormHandler() );
 
         server.setExecutor(null);
         server.start();
