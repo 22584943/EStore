@@ -299,3 +299,17 @@ color: white!important;
 padding: 0.25em 0.5em;
 border-radius: 10px;
 }
+
+.dropdown-cont {
+position: relative;}
+
+#dropdown-results {
+width: 100%;
+background: white;
+position: absolute;
+list-style-type: none;}
+
+#dropdown-results li {
+padding: 0.5em;}
+#dropdown-results li:hover {
+background: orange;}
