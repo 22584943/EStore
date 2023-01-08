@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -49,6 +50,32 @@ public class BasketDAO {
 
         }
         return ok;
+    }
+
+    public boolean deleteBasketItem(int productID) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        int result = 0;
+        String query = "DELETE FROM basket WHERE ID = " + productID + ";";
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            //	System.out.println(query);
+            // execute SQL query
+            result = statement.executeUpdate(query);
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public ArrayList<Product> getBasket() throws SQLException {
@@ -144,6 +171,15 @@ public class BasketDAO {
 
                     st.executeUpdate();
                     ok = true;
+                    // insert into recently purchased
+                    query = "INSERT INTO recentlyPurchased VALUES ('" + product.getID() + "', '" + new Date() + "');";
+                    System.out.println(query);
+                    dbConnection = getDBConnection();
+                    st = dbConnection.prepareStatement(query);
+
+                    st.executeUpdate();
+                    ok = true;
+
                 }
                 // TODO - if something goes wrong, break
             }
