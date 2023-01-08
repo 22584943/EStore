@@ -21,49 +21,53 @@ public class ProductHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
         // Condition button render
-        String AddDeleteColumn = isLoggedIn ? "<div class=\"cell-cont\"></div><div class=\"cell-cont\"></div>" : "";
+        String AddDeleteColumn = isAdminLoggedIn ? "<div class=\"cell-cont\"></div><div class=\"cell-cont\"></div>" : "";
 
         // Autocomplete script
 
 
         try {
-            String showAdd = isLoggedIn ? "<div><a href=\"/products/add\"><span>Add Product</span></a></div>" : "";
+            String showAdd = isAdminLoggedIn ? "<div><a href=\"/products/add\"><span>Add Product</span></a></div>" : "";
             coll = products.getProducts();
             collJSON = products.getProductsJSON();
             System.out.println(collJSON);
-            String autoCompleteScript = "const searchInput = document.getElementById(\"searchInput\");\n" +
-                    "\n" +
-                    "const dropdownCont = document.getElementsByClassName(\"dropdown-cont\")[0]\n" +
-                    "const dropdownResults = document.getElementById(\"dropdown-results\")\n" +
-                    "let searchType = document.getElementById(\"searchType\").value\n" +
-                    "\n" +
-                    "let matchedResults = []" + "\n" +
-                    "let searchResultsData = '" + collJSON + "'" + "\n"+
-                    "let searchResultsArr = []" + "\n"+
-                    "searchResultsData = searchResultsData.substring(0, searchResultsData.length - 2)" + "\n" +
-                    "searchResultsData = \"[\" + searchResultsData + \"]\"" + "\n" +
-                    "searchResultsArr = JSON.parse(searchResultsData)\n" +
-                    "console.log(searchResultsArr)" +
+//            String autoCompleteScript = "const searchInput = document.getElementById(\"searchInput\");\n" +
+//                    "\n" +
+//                    "const dropdownCont = document.getElementsByClassName(\"dropdown-cont\")[0]\n" +
+//                    "const dropdownResults = document.getElementById(\"dropdown-results\")\n" +
+//                    "let searchType = document.getElementById(\"searchType\").value\n" +
+//                    "\n" +
+//                    "let matchedResults = []" + "\n" +
+//                    "let searchResultsData = '" + collJSON + "'" + "\n"+
+//                    "let searchResultsArr = []" + "\n"+
+//                    "searchResultsData = searchResultsData.substring(0, searchResultsData.length - 2)" + "\n" +
+//                    "searchResultsData = \"[\" + searchResultsData + \"]\"" + "\n" +
+//                    "searchResultsArr = JSON.parse(searchResultsData)\n" +
+//                    "console.log(searchResultsArr)" +
+////
+//                    "\n" +
+//                    "searchInput.addEventListener(\"input\", (e)=> {\n" +
+//                    "    searchType = document.getElementById(\"searchType\").value\n" +
+//                    "    let inputText = e.target.value\n" +
+//                    "    console.log(searchType)\n" +
+//                    // clear results each time to avoid duplications
+//                    " matchedResults = []\n" +
+//                    "dropdownResults.innerHTML = \"\"\n" +
+//                    "    for (let i=0; i<searchResultsArr.length; i++) {\n" +
+//// only show when inputText length > 0
+//                    "        if (searchResultsArr[i][searchType].includes(inputText) && inputText.length > 0) {\n" +
+//                    "            matchedResults.push(searchResultsArr[i])" +
+//                    "        }\n" +
+//                    "    }\n" +
+//                    "\n" +
+//                    "    for (let i=0; i<matchedResults.length; i++) {\n" +
+//                    "            dropdownResults.innerHTML += `<li><a href=\"/product?id=${matchedResults[i][\"id\"]}\">${matchedResults[i][searchType]}</a></li>`\n" +
 //
-                    "\n" +
-                    "searchInput.addEventListener(\"input\", (e)=> {\n" +
-                    "    searchType = document.getElementById(\"searchType\").value\n" +
-                    "    let inputText = e.target.value\n" +
-                    "    console.log(searchType)\n" +
-                    "    for (let i=0; i<searchResultsArr.length; i++) {\n" +
-                    "        if (searchResultsArr[i][searchType].includes(inputText)) {\n" +
-                    "            matchedResults.push(searchResultsArr[i])" +
-                    "        }\n" +
-                    "    }\n" +
-                    "\n" +
-                    "    for (let i=0; i<matchedResults.length; i++) {\n" +
-                    "            dropdownResults.innerHTML += `<li><a href=\"/product?id=${matchedResults[i][\"id\"]}\">${matchedResults[i][searchType]}</a></li>`\n" +
-
-                    "    }\n" +
-                    "})"
-                    ;
+//                    "    }\n" +
+//                    "})"
+//                    ;
 //            "let searchResults = \"" + coll + "\"\n" +
             ArrayList<String> categories = products.getCategories();
             out.write(
@@ -116,7 +120,7 @@ public class ProductHandler implements HttpHandler{
 
                 String formattedPrice = formatter.format(p.getPrice());
                 // Keep add/delete in conditional cell-col render, to maintain table styling
-                String showEditOrAddBtn = isLoggedIn ? "<span class=\"cell-col edit-btn-cell\"><a class=\"flex\" href=\"/products/edit?id=" + p.getID() +"\"><i class=\"bi bi-pencil-square\"></i><span>Edit</span></a><a class=\"flex\" href=\"/products/delete?id=" + p.getID() +"\"/><i class=\"bi bi-trash-fill\"></i></i><span>Delete</span></a>" : "<span class=\"product-basket-cell cell-cont\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form></span>";
+                String showEditOrAddBtn = isAdminLoggedIn ? "<span class=\"cell-col edit-btn-cell\"><a class=\"flex\" href=\"/products/edit?id=" + p.getID() +"\"><i class=\"bi bi-pencil-square\"></i><span>Edit</span></a><a class=\"flex\" href=\"/products/delete?id=" + p.getID() +"\"/><i class=\"bi bi-trash-fill\"></i></i><span>Delete</span></a>" : "<span class=\"product-basket-cell cell-cont\"><form action=\"/basket/add\" method=\"get\"><input type=\"hidden\" name=\"id\" value=\""+p.getID() + "\"/><input type=\"hidden\" name=\"currentStock\" value=\"" +p.getStock() + "\"/><input type=\"number\" value=\"1\" name=\"quantity\"/><button type=\"submit\">Add</button></form></span>";
 
                 out.write(
                         "<div class=\"tr\">" +
@@ -141,7 +145,7 @@ public class ProductHandler implements HttpHandler{
                             "</div>" +
                             showAdd +
                                 "<script>" +
-                                autoCompleteScript +
+//                                autoCompleteScript +
                                 "</script>"+
                             "</body>" +
                             "</html>"
