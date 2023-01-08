@@ -3,13 +3,10 @@ import java.io.*;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class RegisterFormHandler implements HttpHandler{
+public class AdminRegisterFormHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
 
 
@@ -60,7 +57,7 @@ public class RegisterFormHandler implements HttpHandler{
 
         try {
             // attempt to add user to db, get response message
-           boolean addSuccessful = UserDAO.addUser(user); // add to database
+           boolean addSuccessful = UserDAO.addAdmin(user); // add to database
             String outputMessage = addSuccessful ?  "User "+ username + " successfully added" : "Error: Unable to add user to database";
 
             out.write(
