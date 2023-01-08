@@ -228,7 +228,7 @@ public class ProductDAO {
 		return categories;
 	}
 
-	public Boolean deleteProduct(int productID) throws SQLException {
+	public boolean deleteProduct(int productID) throws SQLException {
 		System.out.println("Deleting product");
 		Connection dbConnection = null;
 		Statement statement = null;
