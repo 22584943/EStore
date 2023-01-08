@@ -1,8 +1,7 @@
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
-public class Controller {
+public class ConsoleController {
 	private static String selection;
 	private static String inputSKU;
 	private static int inputStock;
@@ -14,7 +13,7 @@ public class Controller {
 
 	private static ArrayList<String> categories = new ArrayList<String>(Arrays.asList());
 	private static ArrayList<Customer> customers = new ArrayList<Customer>(Arrays.asList());
-	static Random r = new Random();
+	private static ProductDAO productDAO = new ProductDAO();
 	// Create input scanner
 	static Scanner in = new Scanner(System.in);
 	
@@ -166,7 +165,6 @@ public class Controller {
 		}
 	}
 	static public void populateProducts() {
-		ProductDAO productDAO = new ProductDAO();
 		try {
 			products = productDAO.getProducts();
 
@@ -320,7 +318,7 @@ public class Controller {
 		// Create new product, add to db
 		Product newProduct = new Product(inputSKU,inputCategory, inputName, inputDescription, inputPrice, inputStock);
 		try {
-			ProductDAO productDAO = new ProductDAO();
+
 			productDAO.addProduct(newProduct);
 
 		} catch (SQLException e) {
@@ -402,7 +400,6 @@ public class Controller {
 	}
 	static public void showProducts() throws SQLException {
 		try {
-			ProductDAO productDAO = new ProductDAO();
 			products = productDAO.getProducts();
 			for (Product product : products) {
 				System.out.println(product);
@@ -443,7 +440,6 @@ public class Controller {
 	
 	static public void sortProducts(String sortType, String sortDirection) {
 		System.out.println("sort " + sortType + " " + sortDirection);
-		ProductDAO productDAO = new ProductDAO();
 		ArrayList<Product> products = new ArrayList<Product>(Arrays.asList());
 		try {
 			products = productDAO.getProducts();
@@ -536,7 +532,6 @@ public class Controller {
 	}
 	
 	static public void deleteProductByID() {
-		ProductDAO productDAO = new ProductDAO();
 		System.out.println("Enter an ID to delete product: ");
 		 int IDToDelete = in.nextInt();
 		// read next line to avoid bug where nextInt causes menu to print unnecessarily
