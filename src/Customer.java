@@ -9,42 +9,22 @@ public class Customer {
 	private Address address;
 	private String email;
 	private String telephone;
+	private String hashedPassword;
 //	private static ArrayList<Customer> customers;
-	static Random r = new Random();
-	static int n = r.nextInt(5000);
-	
-	public static int getNewCustomerID(ArrayList<Customer>customers) {
-		
-		
-		// check for unique IDs
-		for (Customer c : customers) {
-			if (n == c.getID()) {
-				n = r.nextInt(5000);
-				getNewCustomerID(customers);
-			} 
-		}
-		return n;
-		
-	}
-	
-	
-	public Customer(String name, Address address, String email, String telephone, ArrayList<Customer> customers) {
 
-			this.id = getNewCustomerID(customers);
-			this.name = name;
-			this.address = address;
-			this.email = email;
-			this.telephone = telephone;
-	//		Customer.customers = customers;
-		}
+	
 
-	public Customer(String name, Address address, String email, String telephone ) {
+	
+	
+
+
+	public Customer(String name, Address address, String email, String telephone, String hashedPassword ) {
 
 		this.name = name;
 		this.address = address;
 		this.email = email;
 		this.telephone = telephone;
-		//		Customer.customers = customers;
+		this.hashedPassword = hashedPassword;
 	}
 	public Customer(int id, String name, Address address, String email, String telephone) {
 
@@ -53,7 +33,6 @@ public class Customer {
 		this.address = address;
 		this.email = email;
 		this.telephone = telephone;
-	//	Customer.customers = customers;
 	}
 	public Customer getCustomer() {
 		return this;
@@ -73,6 +52,9 @@ public class Customer {
 	}
 	public String getTelephone() {
 		return this.telephone;
+	}
+	public String getHashedPassword() {
+		return this.hashedPassword;
 	}
 
 	public String toString() {
