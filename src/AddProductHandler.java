@@ -20,13 +20,13 @@ public class AddProductHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
 
 
 
 
         // Authorised Access
-        if (isLoggedIn) {
+        if (isAdminLoggedIn) {
             out.write(
                     getHeader.get() +
                             "<h1>Add Product</h1>"
