@@ -3,13 +3,10 @@ import java.io.*;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class LoginFormHandler implements HttpHandler{
+public class AdminLoginFormHandler implements HttpHandler{
     public void handle(HttpExchange he) throws IOException {
 
 
@@ -49,23 +46,26 @@ public class LoginFormHandler implements HttpHandler{
         // Get stored hashed password
         String storedPassword = null;
         try {
-            storedPassword = UserDAO.getStoredPassword(username);
+            storedPassword = UserDAO.getStoredPassword(username, "Admin");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     System.out.println("sp: "+storedPassword);
         // AUTHENTICATION - verify password
-        boolean passwordMatch;
-        passwordMatch = Password.checkPassword(password, storedPassword);
 
+        // must initialise to false, to avoid Password crash
+        boolean passwordMatch = false;
+        if (storedPassword != null) {
+            passwordMatch = Password.checkPassword(password, storedPassword);
+        }
 
         if (passwordMatch) {
 
 
             try {
                 // verify user
-                boolean loginSuccessful = UserDAO.verifyUserExists(username); // add to database
+                boolean loginSuccessful = UserDAO.verifyLogin(username, "Admin"); // add to database
                 String outputMessage = loginSuccessful ? "Welcome, " + username : "Error: Incorrect username or password";
                 String showLinks = loginSuccessful ? "<a href=\"products\">View products</a><a href=\"customers\">View customers</a>" : "";
                 out.write(
