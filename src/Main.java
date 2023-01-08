@@ -46,8 +46,7 @@ class Main {
         System.out.println("The server is listening on port " + PORT);
 
         // start command line
-//        Controller c = new Controller();
-        Controller.run();
+        ConsoleController.run();
     }
 
 
