@@ -2,10 +2,12 @@ public class getHeader {
     static public String get() {
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
+        boolean isCustomerLoggedIn = ud.isLoggedIn("Customer");
         // Condition button render
-        String showLoginLink = isLoggedIn ? "<a href=\"\\logout\">Logout</a>" : "<a href=\"\\login\">Login</a>";
-
+        String showAdminLink = !isAdminLoggedIn ? "<li><a href=\"/admin\">Admin</a></li>" : "";
+        String showLoginLink = isAdminLoggedIn || isCustomerLoggedIn ? "<a href=\"/logout\">Logout</a>" : "<a href=\"/login\">Customer Login</a>";
+        String showCustomersLink = isAdminLoggedIn ? "<li><a href=\"/customers\">Customers</a></li>" : "";
         return "<head>" +
                 "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css\"/>" +
                 "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\" crossorigin=\"anonymous\">" +
@@ -311,6 +313,19 @@ public class getHeader {
                 "padding: 0.25em 0.5em;\n" +
                 "border-radius: 10px;\n" +
                 "}" +
+                ".dropdown-cont {\n" +
+                "position: relative;}\n" +
+                "\n" +
+                "#dropdown-results {\n" +
+                "width: 100%;\n" +
+                "background: white;\n" +
+                "position: absolute;\n" +
+                "list-style-type: none;}\n" +
+                "\n" +
+                "#dropdown-results li {\n" +
+                "padding: 0.5em;}\n" +
+                "#dropdown-results li:hover {\n" +
+                "background: orange;}" +
                 "        </style>" +
                 "    </head>" +
                 "    <body>" +
@@ -322,7 +337,8 @@ public class getHeader {
                 "            <nav>" +
                 "                <ul>" +
                 "                    <li><a href=\"/products\">Products</a></li>" +
-                "                    <li><a href=\"/customers\">Customers</a></li>" +
+                showCustomersLink +
+                showAdminLink +
                 "                    <li>" +
                         showLoginLink +
                 "</li>" +
