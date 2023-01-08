@@ -21,7 +21,7 @@ public class DeleteCustomerHandler implements HttpHandler{
         UserDAO ud = new UserDAO();
         CustomerDAO cd = new CustomerDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
 
         // Get param from URL
         Map <String,String> params = Util.requestStringToMap(he.getRequestURI().getQuery());
@@ -34,7 +34,7 @@ public class DeleteCustomerHandler implements HttpHandler{
 
 
         // Authorised Access
-        if (isLoggedIn) {
+        if (isAdminLoggedIn) {
             try {
                 Customer customer = cd.getCustomerByID(id);
                 out.write(

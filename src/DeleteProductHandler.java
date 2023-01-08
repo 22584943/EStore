@@ -20,7 +20,7 @@ public class DeleteProductHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
 
         // Get param from URL
         Map <String,String> params = Util.requestStringToMap(he.getRequestURI().getQuery());
@@ -33,12 +33,12 @@ public class DeleteProductHandler implements HttpHandler{
 
 
         // Authorised Access
-        if (isLoggedIn) {
+        if (isAdminLoggedIn) {
             try {
                 Product product = products.getProductByID(id);
                 out.write(
                         getHeader.get() +
-                                "<h1>Edit Product:" + product.getName() +"</h1>"
+                                "<h1>Delete Product:" + product.getName() +"</h1>"
 
 
 
