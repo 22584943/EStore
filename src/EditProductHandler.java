@@ -20,7 +20,7 @@ public class EditProductHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
 
         // Get param from URL
         Map <String,String> params = Util.requestStringToMap(he.getRequestURI().getQuery());
@@ -35,7 +35,7 @@ public class EditProductHandler implements HttpHandler{
 
 
         // Authorised Access
-        if (isLoggedIn) {
+        if (isAdminLoggedIn) {
             try {
                 Product product = products.getProductByID(id);
                 out.write(
@@ -45,7 +45,7 @@ public class EditProductHandler implements HttpHandler{
 
                 );
 
-                    String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?SKU=" + product.getSKU() +"\">Edit</a></td>" : "";
+                    String showEdit = isAdminLoggedIn ? "<td><a href=\"/products/edit?SKU=" + product.getSKU() +"\">Edit</a></td>" : "";
                     out.write(
                             "<form class=\"edit-product-form\" action=\"edit-product-handler\" method=\"post\">" +
                                     "<div class=\"form-row\">" +
