@@ -27,7 +27,7 @@ public class ProductSearchResultsHandler implements HttpHandler{
 
         UserDAO ud = new UserDAO();
         // Check if logged in
-        boolean isLoggedIn = ud.isLoggedIn();
+        boolean isAdminLoggedIn = ud.isLoggedIn("Admin");
         // Condition button render
 
         try {
@@ -52,8 +52,8 @@ public class ProductSearchResultsHandler implements HttpHandler{
 
             );
             for (Product p: coll) {
-                String showEdit = isLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
-                String showDelete = isLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
+                String showEdit = isAdminLoggedIn ? "<td><a href=\"/products/edit?id=" + p.getID() +"\">Edit</a></td>" : "";
+                String showDelete = isAdminLoggedIn ? "<td><a href=\"/products/delete?id=" + p.getID() +"\">Delete</a></td>" : "";
 
                 out.write(
                         "<tr>" +
