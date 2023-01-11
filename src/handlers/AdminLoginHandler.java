@@ -19,6 +19,7 @@ public class AdminLoginHandler implements HttpHandler{
 
 
                         "<div class=\"login-wrapper\">" +
+                        "<i class=\"bi bi-person-badge-fill login-icon\"></i>" +
                         "<h2>Admin</h2>" +
                         "<ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">\n" +
                         "            <li class=\"nav-item\" role=\"presentation\">\n" +
