@@ -85,7 +85,8 @@ h3 {
 .flex {
 display: flex;}
 .flex-down {
-    flex-direction: column;
+    flex-direction: column!important;
+    align-items: flex-start!important;
 }
 header {
    background: #000;
@@ -123,6 +124,14 @@ nav ul li:hover {
    cursor: pointer;
 }
 
+.login-icon {
+font-size: 4em;
+padding-bottom: 0.25em;
+}
+
+.login-wrapper h2 {
+padding-bottom: 0.25em;
+}
 .basket-wrapper {
 display: flex;
 width: 100%;
@@ -138,7 +147,7 @@ align-items: center;}
 .login-wrapper {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 200px;
+    padding-top: 100px;
 }
 
 .login-wrapper form {
@@ -313,3 +322,20 @@ list-style-type: none;}
 padding: 0.5em;}
 #dropdown-results li:hover {
 background: orange;}
+
+form[action="/customer-register-handler"] .form-row {
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+
+form[action="/customer-register-handler"] input {
+width: 100%;
+}
+
+.form-item {
+width: 48%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}

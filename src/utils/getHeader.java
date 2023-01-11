@@ -104,7 +104,8 @@ public class getHeader {
                 ".flex {\n" +
                 "display: flex;}\n" +
                 ".flex-down {\n" +
-                "    flex-direction: column;\n" +
+                "    flex-direction: column!important;\n" +
+                "    align-items: flex-start!important;\n" +
                 "}\n" +
                 "header {\n" +
                 "   background: #000;\n" +
@@ -141,6 +142,14 @@ public class getHeader {
                 "nav ul li:hover {\n" +
                 "   cursor: pointer;\n" +
                 "}\n" +
+                ".login-icon {\n" +
+                "font-size: 4em;\n" +
+                "padding-bottom: 0.25em;\n" +
+                "}\n" +
+                "\n" +
+                ".login-wrapper h2 {\n" +
+                "padding-bottom: 0.25em;\n" +
+                "}" +
                 "\n" +
                 ".basket-wrapper {\n" +
                 "display: flex;\n" +
@@ -157,7 +166,7 @@ public class getHeader {
                 ".login-wrapper {\n" +
                 "    flex-direction: column;\n" +
                 "    justify-content: flex-start;\n" +
-                "    padding-top: 200px;\n" +
+                "    padding-top: 100px;\n" +
                 "}\n" +
                 "\n" +
                 ".login-wrapper form {\n" +
@@ -182,8 +191,22 @@ public class getHeader {
                 "    text-transform: uppercase;\n" +
                 "    border: none;\n" +
                 "}\n" +
+                "form[action=\"/customer-register-handler\"] .form-row {\n" +
+                "flex-direction: row;\n" +
+                "justify-content: space-between;\n" +
+                "align-items: center;\n" +
+                "}\n" +
                 "\n" +
+                "form[action=\"/customer-register-handler\"] input {\n" +
+                "width: 100%;\n" +
+                "}\n" +
                 "\n" +
+                ".form-item {\n" +
+                "width: 48%;\n" +
+                "display: flex;\n" +
+                "flex-direction: column;\n" +
+                "align-items: flex-start;\n" +
+                "}" +
                 ".tr {\n" +
                 "display: flex;\n" +
                 "justify-content: flex-start;\n" +
